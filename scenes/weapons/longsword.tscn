@@ -1,10 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dohd08viqgmk3"]
+[gd_scene load_steps=23 format=3 uid="uid://dohd08viqgmk3"]
 
 [ext_resource type="Texture2D" uid="uid://dhfhkb2spa0a" path="res://assets/img/sword.png" id="1_5bxbu"]
 [ext_resource type="Script" path="res://scenes/weapons/longsword.gd" id="1_857cd"]
 [ext_resource type="PackedScene" uid="uid://bvb748yhrl8ks" path="res://scenes/weapons/base_melee.tscn" id="1_dlt4q"]
 [ext_resource type="Script" path="res://resources/customtypes/attack_properties.gd" id="2_70a1w"]
-[ext_resource type="Script" path="res://resources/customtypes/smoother.gd" id="4_g6jog"]
 [ext_resource type="Script" path="res://resources/customtypes/melee_hitbox.gd" id="5_6nk30"]
 [ext_resource type="AudioStream" uid="uid://bgo3qp1b6ktsb" path="res://assets/sound/slash.wav" id="6_8bkw6"]
 
@@ -346,10 +345,7 @@ alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("1_5bxbu")
 
-[node name="Smoother" type="Node" parent="WeaponModel" index="1"]
-script = ExtResource("4_g6jog")
-
-[node name="MeleeHitbox" type="Area3D" parent="WeaponModel" index="2"]
+[node name="MeleeHitbox" type="Area3D" parent="WeaponModel" index="1"]
 script = ExtResource("5_6nk30")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponModel/MeleeHitbox" index="0"]

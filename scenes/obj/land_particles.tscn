@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5milo5pqoc62"]
+
+[ext_resource type="Script" path="res://scenes/obj/land_particles.gd" id="1_uxqxa"]
+[ext_resource type="Shader" path="res://resources/mat/particles.gdshader" id="2_0yprp"]
+[ext_resource type="Texture2D" uid="uid://cpdns0gkke82b" path="res://assets/img/particle1.png" id="3_fohgq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2g4js"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 10, 0)
+spread = 41.89
+gravity = Vector3(0, -20, 0)
+initial_velocity_max = 6.29
+linear_accel_max = 2.98
+scale_min = 0.75
+collision_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc2te"]
+render_priority = 1
+shader = ExtResource("2_0yprp")
+shader_parameter/scroll_speed = Vector2(0, 0)
+shader_parameter/static_intensity = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/tex_scale = 0.75
+shader_parameter/albedo_tex = ExtResource("3_fohgq")
+
+[sub_resource type="SphereMesh" id="SphereMesh_qdy5p"]
+material = SubResource("ShaderMaterial_vc2te")
+radial_segments = 12
+rings = 12
+
+[node name="LandingParticles" type="Node3D"]
+script = ExtResource("1_uxqxa")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+emitting = false
+amount = 32
+lifetime = 1.37
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.1
+visibility_aabb = AABB(-4, -4, -5, 8, 8, 10)
+trail_lifetime = 1.13
+process_material = SubResource("ParticleProcessMaterial_2g4js")
+draw_pass_1 = SubResource("SphereMesh_qdy5p")

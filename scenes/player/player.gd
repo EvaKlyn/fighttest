@@ -46,6 +46,8 @@ var taken_attack_ids: Array = []
 @onready var synchronizer = $MultiplayerSynchronizer
 @onready var hurt_sound = $HurtSound
 @onready var shield_mesh = $ShieldMesh
+@onready var landing_particles = preload("res://scenes/obj/land_particles.tscn")
+@onready var hurt_particles = preload("res://scenes/obj/blood_particles.tscn")
 
 var set_up = false
 var last_input_state = {
@@ -65,6 +67,7 @@ func _ready():
 		setup()
 		player_alias = MpGlobals.my_alias
 		dodge_ability.actived.connect(func(): do_animation("dodge"))
+		landed.connect(spawn_landing_particles)
 
 func _physics_process(delta):
 	if not set_up:
@@ -77,6 +80,7 @@ func _physics_process(delta):
 	if is_multiplayer_authority():
 		var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 		var guarded_last_frame = guarding
+		
 		if guard_ended:
 			guard_ended = false
 		
@@ -163,6 +167,14 @@ func die():
 func do_animation(anim: String = "dodge"):
 	body_animations.play(anim)
 
+func spawn_landing_particles():
+	var new_particles: Node3D = landing_particles.instantiate()
+	$SubWorld.add_child(new_particles, true)
+
+func spawn_hurt_particles():
+	var new_particles: Node3D = hurt_particles.instantiate()
+	$SubWorld.add_child(new_particles, true)
+
 @rpc("any_peer", "call_local")
 func teleport(pos: Vector3):
 	print("tp to "+str(pos))
@@ -207,7 +219,7 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 		return
 	
 	reduce_health(properties.damage)
-	
+	spawn_hurt_particles()
 	current_weapon.stop_attacks()
 	add_hit_stun(properties.stun_time)
 
