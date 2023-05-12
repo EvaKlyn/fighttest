@@ -112,6 +112,7 @@ font_size = 72
 outline_size = 17
 
 [node name="ShieldMesh" type="MeshInstance3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203795, 0)
 mesh = SubResource("SphereMesh_dh2kb")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="14"]
