@@ -152,7 +152,13 @@ mesh = SubResource("SphereMesh_dh2kb")
 replication_config = SubResource("SceneReplicationConfig_803co")
 visibility_update_mode = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="15"]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="15"]
+_spawnable_scenes = PackedStringArray("res://scenes/obj/land_particles.tscn", "res://scenes/obj/blood_particles.tscn")
+spawn_path = NodePath("../SubWorld")
+
+[node name="SubWorld" type="Node3D" parent="." index="16"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="17"]
 
 [node name="Hud" type="Control" parent="CanvasLayer" index="0"]
 layout_mode = 3
@@ -201,6 +207,6 @@ text = "100/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="16"]
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="18"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466824, 0)
 stream = ExtResource("6_tbng5")
