@@ -1,30 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dlybjknss6baj"]
+[gd_scene load_steps=10 format=3 uid="uid://dlybjknss6baj"]
 
 [ext_resource type="PackedScene" uid="uid://cr4d14eps6xpf" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_fbpun"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_8r0nc"]
 [ext_resource type="Environment" uid="uid://b3cn01u84faiy" path="res://addons/character-controller/example/main/underwater.tres" id="3_dxksd"]
 [ext_resource type="PackedScene" uid="uid://b1oagcoh1u8bb" path="res://addons/character-controller/example/main/audios/player_audios.tscn" id="4_ux8kv"]
-[ext_resource type="Material" uid="uid://bjc07iflfr0rn" path="res://resources/mat/character.tres" id="5_1c5wj"]
 [ext_resource type="Shader" path="res://resources/mat/shield.gdshader" id="5_twrjt"]
 [ext_resource type="AudioStream" uid="uid://bgdeqr1enc6l1" path="res://assets/sound/hitHurt.wav" id="6_tbng5"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_yh2tc"]
-material = ExtResource("5_1c5wj")
-radius = 0.4
-height = 1.5
-radial_segments = 8
-rings = 1
-
-[sub_resource type="SphereMesh" id="SphereMesh_svvbt"]
-material = ExtResource("5_1c5wj")
-radius = 0.33
-height = 0.66
-radial_segments = 16
-rings = 8
-
-[sub_resource type="PrismMesh" id="PrismMesh_74nu3"]
-material = ExtResource("5_1c5wj")
-size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r2s8c"]
 render_priority = 0
@@ -37,8 +18,8 @@ shader_parameter/barrier_speed = 12.0
 [sub_resource type="SphereMesh" id="SphereMesh_dh2kb"]
 material = SubResource("ShaderMaterial_r2s8c")
 flip_faces = true
-radius = 1.0
-height = 2.0
+radius = 1.2
+height = 2.4
 radial_segments = 16
 rings = 8
 
@@ -55,25 +36,25 @@ properties/2/sync = true
 properties/3/path = NodePath(".:rotation")
 properties/3/spawn = true
 properties/3/sync = true
-properties/4/path = NodePath("Vis/MeshInstance3D/Node3D:rotation")
+properties/4/path = NodePath(".:hit_stunned")
 properties/4/spawn = true
 properties/4/sync = true
-properties/5/path = NodePath(".:hit_stunned")
+properties/5/path = NodePath("AnimationPlayer:current_animation")
 properties/5/spawn = true
 properties/5/sync = true
-properties/6/path = NodePath("AnimationPlayer:current_animation")
+properties/6/path = NodePath(".:current_animation_time")
 properties/6/spawn = true
 properties/6/sync = true
-properties/7/path = NodePath(".:current_animation_time")
+properties/7/path = NodePath("ShieldMesh:visible")
 properties/7/spawn = true
 properties/7/sync = true
-properties/8/path = NodePath("ShieldMesh:visible")
+properties/8/path = NodePath("ShieldMesh:scale")
 properties/8/spawn = true
 properties/8/sync = true
-properties/9/path = NodePath("ShieldMesh:scale")
+properties/9/path = NodePath(".:current_hp")
 properties/9/spawn = true
 properties/9/sync = true
-properties/10/path = NodePath(".:current_hp")
+properties/10/path = NodePath(".:head_rotation")
 properties/10/spawn = true
 properties/10/sync = true
 
@@ -83,6 +64,7 @@ script = ExtResource("2_8r0nc")
 player_alias = "WHOOPS"
 current_animation_time = 0.0
 current_hp = 100
+head_rotation = Vector3(0, 0, 0)
 current_weapon = NodePath("")
 max_hp = 100
 max_shield_hp = 100
@@ -118,37 +100,18 @@ iframe_duration = 0.4
 [node name="Vis" type="Node3D" parent="." index="12"]
 
 [node name="Label3D" type="Label3D" parent="Vis" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23172, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6079, 0)
 billboard = 1
 text = "Name"
 
 [node name="HealthLabel" type="Label3D" parent="Vis" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4871, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86328, 0)
 billboard = 1
 text = "100%"
 font_size = 72
 outline_size = 17
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Vis" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, -2.38419e-07, 0, 2.38419e-07, 1, 0, -0.24865, 0)
-gi_mode = 2
-mesh = SubResource("CapsuleMesh_yh2tc")
-skeleton = NodePath("../..")
-
-[node name="Node3D" type="Node3D" parent="Vis/MeshInstance3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685009, -0.147766)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Vis/MeshInstance3D/Node3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158789, -0.168208)
-mesh = SubResource("SphereMesh_svvbt")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Vis/MeshInstance3D/Node3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.071429, -0.420025)
-mesh = SubResource("PrismMesh_74nu3")
-
 [node name="ShieldMesh" type="MeshInstance3D" parent="." index="13"]
-visible = false
 mesh = SubResource("SphereMesh_dh2kb")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="14"]

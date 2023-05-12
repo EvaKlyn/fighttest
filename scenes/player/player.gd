@@ -17,6 +17,7 @@ class_name Player
 @export var player_alias := "WHOOPS"
 @export var current_animation_time: float = 0.0
 @export var current_hp: int = 100
+@export var head_rotation: Vector3 = Vector3.ZERO
 
 # gameplay values local
 var guarding: bool = false
@@ -31,7 +32,7 @@ var taken_attack_ids: Array = []
 @export var max_hp: int = 100
 @export var max_shield_hp: int = 100
 @export var knockback_multiplier: float = 1.0
-
+@export var head_mesh: Node3D
 @export_group("Input Conifg")
 @export var input_back_action_name := "move_backward"
 @export var input_forward_action_name := "move_forward"
@@ -66,7 +67,7 @@ func _ready():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		setup()
 		player_alias = MpGlobals.my_alias
-		dodge_ability.actived.connect(func(): do_animation("dodge"))
+		dodge_ability.dodged.connect(func(): do_animation("dodge"))
 		landed.connect(spawn_landing_particles)
 
 func _physics_process(delta):
@@ -145,6 +146,7 @@ func _physics_process(delta):
 	else:
 		$Vis/HealthLabel.text = str((float(current_hp) / float(max_hp)) * 100) + "%"
 		body_animations.seek(current_animation_time)
+		head_mesh.rotation = head_rotation
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
@@ -154,7 +156,9 @@ func _input(event: InputEvent) -> void:
 				rotate_head(event.relative)
 			else:
 				rotate_only_head(event.relative)
-			$Vis/MeshInstance3D/Node3D.rotation = head.rotation
+			var temp_rotation = head.rotation
+			temp_rotation.y = temp_rotation.y + deg_to_rad(180)
+			head_rotation = temp_rotation
 
 func reduce_health(damage: int):
 	current_hp -= damage

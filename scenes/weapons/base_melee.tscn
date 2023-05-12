@@ -10,6 +10,9 @@ properties/0/sync = true
 properties/1/path = NodePath(".:current_animation_time")
 properties/1/spawn = true
 properties/1/sync = true
+properties/2/path = NodePath(".:attack_active")
+properties/2/spawn = true
+properties/2/sync = true
 
 [node name="MeleeWeapon" type="Node3D" node_paths=PackedStringArray("weapon_model", "weapon_anims", "hitbox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)

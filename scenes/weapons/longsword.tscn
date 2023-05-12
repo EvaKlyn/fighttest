@@ -137,6 +137,67 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
+[sub_resource type="Resource" id="Resource_4wbfb"]
+script = ExtResource("2_70a1w")
+damage = 4
+launch_power = 5.0
+stun_time = 0.3
+position_offset = Vector2(0, 0)
+knockup_amount = 0.0
+shattering = true
+
+[sub_resource type="Animation" id="Animation_hvjom"]
+resource_name = "shield_break"
+length = 0.8
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.832, 0, -0.65)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.133997, 1.44632, -0.307373, 0.4, 1, 0.133997, 1.44632, -0.307373, 0.5, 1, 0.0130527, 0.0541325, -1.08593, 0.8, 1, 0.251188, 0.0541325, -0.96923)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 1.38765e-08, -0.310411, 4.24953e-08, 0.950602, 0.4, 1, 1.38765e-08, -0.310411, 4.24953e-08, 0.950602, 0.5, 1, 0.10482, 0.0876187, -0.682047, 0.718434, 0.8, 1, -0.0848748, 0.0744223, -0.69832, 0.706828)
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_sound"
+}, {
+"args": [SubResource("Resource_4wbfb")],
+"method": &"activate_alt_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_alt_hitbox"
+}]
+}
+
 [sub_resource type="Resource" id="Resource_k2snw"]
 script = ExtResource("2_70a1w")
 damage = 10
@@ -326,67 +387,6 @@ tracks/2/keys = {
 }, {
 "args": [],
 "method": &"deactivate_melee_hitbox"
-}]
-}
-
-[sub_resource type="Resource" id="Resource_4wbfb"]
-script = ExtResource("2_70a1w")
-damage = 4
-launch_power = 5.0
-stun_time = 0.3
-position_offset = Vector2(0, 0)
-knockup_amount = 0.0
-shattering = true
-
-[sub_resource type="Animation" id="Animation_hvjom"]
-resource_name = "shield_break"
-length = 0.8
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponModel")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.832, 0, -0.65)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponModel")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/2/type = "position_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hand")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.133997, 1.44632, -0.307373, 0.4, 1, 0.133997, 1.44632, -0.307373, 0.5, 1, 0.0130527, 0.0541325, -1.08593, 0.8, 1, 0.251188, 0.0541325, -0.96923)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hand")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 1.38765e-08, -0.310411, 4.24953e-08, 0.950602, 0.4, 1, 1.38765e-08, -0.310411, 4.24953e-08, 0.950602, 0.5, 1, 0.10482, 0.0876187, -0.682047, 0.718434, 0.8, 1, -0.0848748, 0.0744223, -0.69832, 0.706828)
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [],
-"method": &"play_sound"
-}, {
-"args": [SubResource("Resource_4wbfb")],
-"method": &"activate_alt_hitbox"
-}, {
-"args": [],
-"method": &"deactivate_alt_hitbox"
 }]
 }
 

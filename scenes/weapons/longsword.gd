@@ -71,12 +71,16 @@ func shield_break(attack_state) -> void:
 	weapon_anims.queue("idle")
 
 func activate_alt_hitbox(properties: AttackProperties):
+	if not is_multiplayer_authority():
+		return
 	current_attack_properties = properties
 	current_attack_id = uuid.new().as_string()
 	alt_hitbox_active = true
 	alt_hitbox.attacking = true
 
 func deactivate_alt_hitbox():
+	if not is_multiplayer_authority():
+		return
 	alt_hitbox_active = false
 	alt_hitbox.attacking = false
 

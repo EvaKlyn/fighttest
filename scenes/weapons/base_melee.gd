@@ -12,6 +12,7 @@ const uuid = preload("res://util/uuid.gd")
 @export_group("Network Variables")
 @export var current_weapon_anim: String = ""
 @export var current_animation_time: float = 0.0
+@export var attack_active: bool = false
 
 @onready var synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var clash_sound: AudioStreamPlayer3D = $ClashSound
@@ -44,11 +45,14 @@ func _physics_process(_delta):
 						var dmg_angle = Vector2(forward_vec.x, forward_vec.z).angle()
 						dmg_angle = dmg_angle + current_attack_properties.position_offset.angle()
 						body.rpc("take_damage", current_attack_id, current_attack_properties.serialize(), dmg_angle, current_attack_properties.knockup_amount)
-	
+		
+		attack_active = hitbox.attacking
+		
 	if not is_multiplayer_authority():
 		if current_weapon_anim != weapon_anims.current_animation:
 			weapon_anims.play(current_weapon_anim)
 		weapon_anims.seek(current_animation_time)
+		hitbox.attacking = attack_active
 
 func attack(attack_state) -> void:
 	pass
@@ -70,12 +74,16 @@ func attack_almost_finished() -> bool:
 	return false
 
 func activate_melee_hitbox(properties: AttackProperties):
+	if not is_multiplayer_authority():
+		return
 	current_attack_properties = properties
 	current_attack_id = uuid.new().as_string()
 	hitbox_active = true
 	hitbox.attacking = true
 
 func deactivate_melee_hitbox():
+	if not is_multiplayer_authority():
+		return
 	hitbox_active = false
 	hitbox.attacking = false
 
