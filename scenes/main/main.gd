@@ -60,7 +60,6 @@ func add_player(id=1):
 	$Networked.add_child(character)
 	
 	MpGlobals.player_nodes[id] = character.get_path()
-	print(MpGlobals.player_nodes)
 	await get_tree().create_timer(0.1).timeout
 	
 	character.global_position = tp_position

@@ -53,9 +53,12 @@ func _physics_process(_delta):
 func attack(attack_state) -> void:
 	pass
 
-func special(attack_state) -> void:
+func special(attack_state, index: int) -> void:
 	pass
-
+	
+func shield_break(attack_state) -> void:
+	pass
+	
 func attack_almost_finished() -> bool:
 	var pos = weapon_anims.current_animation_position
 	var end = weapon_anims.current_animation_length

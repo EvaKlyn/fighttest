@@ -1,33 +1,38 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlybjknss6baj"]
+[gd_scene load_steps=14 format=3 uid="uid://dlybjknss6baj"]
 
 [ext_resource type="PackedScene" uid="uid://cr4d14eps6xpf" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_fbpun"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_8r0nc"]
 [ext_resource type="Environment" uid="uid://b3cn01u84faiy" path="res://addons/character-controller/example/main/underwater.tres" id="3_dxksd"]
 [ext_resource type="PackedScene" uid="uid://b1oagcoh1u8bb" path="res://addons/character-controller/example/main/audios/player_audios.tscn" id="4_ux8kv"]
+[ext_resource type="Material" uid="uid://bjc07iflfr0rn" path="res://resources/mat/character.tres" id="5_1c5wj"]
 [ext_resource type="Shader" path="res://resources/mat/shield.gdshader" id="5_twrjt"]
 [ext_resource type="AudioStream" uid="uid://bgdeqr1enc6l1" path="res://assets/sound/hitHurt.wav" id="6_tbng5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yh2tc"]
+material = ExtResource("5_1c5wj")
 radius = 0.4
 height = 1.5
 radial_segments = 8
 rings = 1
 
-[sub_resource type="BoxMesh" id="BoxMesh_ta66s"]
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="SphereMesh" id="SphereMesh_svvbt"]
+material = ExtResource("5_1c5wj")
+radius = 0.33
+height = 0.66
+radial_segments = 16
+rings = 8
 
 [sub_resource type="PrismMesh" id="PrismMesh_74nu3"]
+material = ExtResource("5_1c5wj")
 size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r2s8c"]
 render_priority = 0
 shader = ExtResource("5_twrjt")
-shader_parameter/albedo = Color(0, 0.67451, 0.839216, 1)
-shader_parameter/emission_color = Color(0.160784, 1, 1, 1)
-shader_parameter/emission_amount = 6.765
-shader_parameter/rim_steepness = 5.353
-shader_parameter/uv_scale = null
-shader_parameter/uv_offset = null
+shader_parameter/barrier_color = Color(0.239216, 0.482353, 1, 1)
+shader_parameter/barrier_force = 10.0
+shader_parameter/barrier_interval = 40.0
+shader_parameter/barrier_speed = 12.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_dh2kb"]
 material = SubResource("ShaderMaterial_r2s8c")
@@ -74,28 +79,51 @@ properties/10/sync = true
 
 [node name="Player" node_paths=PackedStringArray("current_weapon") instance=ExtResource("1_fbpun")]
 script = ExtResource("2_8r0nc")
-player_alias = "WHOOPS"
-current_animation_time = 0.0
-current_hp = 100
+player_alias = null
+current_animation_time = null
+current_hp = null
 current_weapon = NodePath("")
-max_hp = 100
-max_shield_hp = 100
-knockback_multiplier = 1.0
-input_back_action_name = "move_backward"
-input_forward_action_name = "move_forward"
-input_left_action_name = "move_left"
-input_right_action_name = "move_right"
-input_sprint_action_name = "move_sprint"
-input_jump_action_name = "move_jump"
-input_crouch_action_name = "move_crouch"
+max_hp = null
+max_shield_hp = null
+knockback_multiplier = null
+input_back_action_name = null
+input_forward_action_name = null
+input_left_action_name = null
+input_right_action_name = null
+input_sprint_action_name = null
+input_jump_action_name = null
+input_crouch_action_name = null
 underwater_env = ExtResource("3_dxksd")
+fov_change_speed = null
+sprint_fov_multiplier = null
+crouch_fov_multiplier = null
+swim_fov_multiplier = null
+mouse_sensitivity = null
+vertical_angle_limit = null
+step_bob_enabled = null
+vertical_horizontal_ratio = null
+jump_bob_enabled = null
+rotation_to_move = null
+speed_rotation = null
+angle_limit_for_rotation = null
+gravity_multiplier = null
 speed = 6
 acceleration = 30
+deceleration = null
 air_control = 1.0
-sprint_speed_multiplier = 1.6
+sprint_speed_multiplier = null
 step_lengthen = 0.4
 step_interval = 4.0
+height_in_crouch = null
 crouch_speed_multiplier = 0.6
+jump_height = null
+fly_mode_speed_modifier = null
+submerged_height = null
+floating_height = null
+on_water_speed_multiplier = null
+submerged_speed_multiplier = null
+hit_stunned = null
+hit_stun_time = null
 abilities_path = Array[NodePath]([NodePath("Crouch Ability 3D"), NodePath("Sprint Ability 3D"), NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D"), NodePath("DodgeAbility3D"), NodePath("KnockbackAbility")])
 
 [node name="Player Audios" parent="." index="0" instance=ExtResource("4_ux8kv")]
@@ -103,10 +131,6 @@ abilities_path = Array[NodePath]([NodePath("Crouch Ability 3D"), NodePath("Sprin
 [node name="Walk Ability 3D" parent="." index="3"]
 acceleration = 1
 air_control = 1.0
-
-[node name="Camera" parent="Head" index="0"]
-current = false
-fov = 85.0
 
 [node name="DodgeAbility3D" parent="." index="10"]
 dodge_strength = 10.0
@@ -138,7 +162,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685009, -0.147766)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Vis/MeshInstance3D/Node3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158789, -0.168208)
-mesh = SubResource("BoxMesh_ta66s")
+mesh = SubResource("SphereMesh_svvbt")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Vis/MeshInstance3D/Node3D" index="1"]
@@ -146,6 +170,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0
 mesh = SubResource("PrismMesh_74nu3")
 
 [node name="ShieldMesh" type="MeshInstance3D" parent="." index="13"]
+visible = false
 mesh = SubResource("SphereMesh_dh2kb")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="14"]

@@ -63,10 +63,10 @@ class_name FPSController3D
 @onready var head: HeadMovement3D = get_node(NodePath("Head"))
 
 ## Camera3D reference
-@onready var camera: Camera3D = get_node(NodePath("Head/Camera"))
+@onready var camera: Camera3D = get_node(NodePath("Head/CameraContainer/Camera"))
 
 ## HeadBob reference
-@onready var head_bob: HeadBob = get_node(NodePath("Head/Head Bob"))
+@onready var head_bob: HeadBob = get_node(NodePath("Head/CameraContainer/Head Bob"))
 
 ## Stores normal fov from camera fov
 @onready var normal_fov: float = camera.fov
@@ -84,7 +84,8 @@ func setup():
 	head_bob.speed_rotation = speed_rotation
 	head_bob.angle_limit_for_rotation = angle_limit_for_rotation
 	head_bob.vertical_horizontal_ratio = vertical_horizontal_ratio
-	head_bob.setup_step_bob(step_interval * 2);
+	head_bob.setup_step_bob(step_interval * 2)
+	dodge_ability.connect("dodged", func(): head.roll_dip())
 
 ## Rotate head based on mouse axis parameter.
 ## This function call [b]head.rotate_camera()[/b].

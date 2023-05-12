@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dohd08viqgmk3"]
+[gd_scene load_steps=27 format=3 uid="uid://dohd08viqgmk3"]
 
 [ext_resource type="Texture2D" uid="uid://dhfhkb2spa0a" path="res://assets/img/sword.png" id="1_5bxbu"]
 [ext_resource type="Script" path="res://scenes/weapons/longsword.gd" id="1_857cd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://resources/customtypes/attack_properties.gd" id="2_70a1w"]
 [ext_resource type="Script" path="res://resources/customtypes/melee_hitbox.gd" id="5_6nk30"]
 [ext_resource type="AudioStream" uid="uid://bgo3qp1b6ktsb" path="res://assets/sound/slash.wav" id="6_8bkw6"]
+[ext_resource type="Texture2D" uid="uid://c81d3i6aubl2k" path="res://assets/img/hand.png" id="6_47ovb"]
 
 [sub_resource type="Animation" id="Animation_06xb6"]
 length = 0.001
@@ -23,6 +24,20 @@ tracks/1/path = NodePath("WeaponModel")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.544372, -0.437181, -0.0494687)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_121c6"]
 resource_name = "clash"
@@ -44,11 +59,12 @@ tracks/1/keys = PackedFloat32Array(0, 1, -0.182235, 0.0499223, -0.25945, 0.94709
 
 [sub_resource type="Resource" id="Resource_hxb1d"]
 script = ExtResource("2_70a1w")
-damage = 6
+damage = 12
 launch_power = 6.0
 stun_time = 0.3
 position_offset = Vector2(0, 0)
 knockup_amount = 1.0
+shattering = false
 
 [sub_resource type="Animation" id="Animation_ua6s1"]
 resource_name = "crouch_stab"
@@ -75,7 +91,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.25),
+"times": PackedFloat32Array(0, 0.1002, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -106,6 +122,20 @@ tracks/1/path = NodePath("WeaponModel")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.544372, -0.437181, -0.0494687)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_k2snw"]
 script = ExtResource("2_70a1w")
@@ -114,6 +144,7 @@ launch_power = 0.0
 stun_time = 0.6
 position_offset = Vector2(0, 0)
 knockup_amount = 15.0
+shattering = false
 
 [sub_resource type="Animation" id="Animation_73w8r"]
 resource_name = "special"
@@ -159,8 +190,9 @@ script = ExtResource("2_70a1w")
 damage = 6
 launch_power = 3.0
 stun_time = 0.3
-position_offset = Vector2(1, -1)
+position_offset = Vector2(0, 0)
 knockup_amount = 4.0
+shattering = false
 
 [sub_resource type="Animation" id="Animation_o7evh"]
 resource_name = "swing"
@@ -203,11 +235,12 @@ tracks/2/keys = {
 
 [sub_resource type="Resource" id="Resource_k5ddp"]
 script = ExtResource("2_70a1w")
-damage = 11
+damage = 9
 launch_power = 12.0
 stun_time = 0.6
 position_offset = Vector2(0, 0)
 knockup_amount = 10.0
+shattering = false
 
 [sub_resource type="Animation" id="Animation_4ads4"]
 resource_name = "swing2"
@@ -250,11 +283,12 @@ tracks/2/keys = {
 
 [sub_resource type="Resource" id="Resource_pdx08"]
 script = ExtResource("2_70a1w")
-damage = 9
+damage = 11
 launch_power = 8.0
 stun_time = 0.5
 position_offset = Vector2(0, 0)
 knockup_amount = 1.0
+shattering = false
 
 [sub_resource type="Animation" id="Animation_o31xy"]
 resource_name = "swing3"
@@ -295,12 +329,74 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Resource" id="Resource_4wbfb"]
+script = ExtResource("2_70a1w")
+damage = 4
+launch_power = 5.0
+stun_time = 0.3
+position_offset = Vector2(0, 0)
+knockup_amount = 0.0
+shattering = true
+
+[sub_resource type="Animation" id="Animation_hvjom"]
+resource_name = "shield_break"
+length = 0.8
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.832, 0, -0.65)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.133997, 1.44632, -0.307373, 0.4, 1, 0.133997, 1.44632, -0.307373, 0.5, 1, 0.0130527, 0.0541325, -1.08593, 0.8, 1, 0.251188, 0.0541325, -0.96923)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 1.38765e-08, -0.310411, 4.24953e-08, 0.950602, 0.4, 1, 1.38765e-08, -0.310411, 4.24953e-08, 0.950602, 0.5, 1, 0.10482, 0.0876187, -0.682047, 0.718434, 0.8, 1, -0.0848748, 0.0744223, -0.69832, 0.706828)
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_sound"
+}, {
+"args": [SubResource("Resource_4wbfb")],
+"method": &"activate_alt_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_alt_hitbox"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q1uj1"]
 _data = {
 "RESET": SubResource("Animation_06xb6"),
 "clash": SubResource("Animation_121c6"),
 "crouch_stab": SubResource("Animation_ua6s1"),
 "idle": SubResource("Animation_ybb6b"),
+"shield_break": SubResource("Animation_hvjom"),
 "special": SubResource("Animation_73w8r"),
 "swing": SubResource("Animation_o7evh"),
 "swing2": SubResource("Animation_4ads4"),
@@ -310,6 +406,9 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_2vhf0"]
 size = Vector3(0.249722, 1.33382, 0.573241)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5urhg"]
+size = Vector3(0.249722, 0.315084, 0.335952)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_klsrf"]
 streams_count = 1
 playback_mode = 1
@@ -317,16 +416,15 @@ random_pitch = 1.68
 stream_0/stream = ExtResource("6_8bkw6")
 stream_0/weight = 1.0
 
-[node name="Longsword" node_paths=PackedStringArray("weapon_model", "weapon_anims", "hitbox", "sound") instance=ExtResource("1_dlt4q")]
+[node name="Longsword" node_paths=PackedStringArray("alt_hitbox", "weapon_model", "weapon_anims", "hitbox", "sound") instance=ExtResource("1_dlt4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_857cd")
+alt_hitbox = NodePath("Hand/MeleeHitbox")
 weapon_model = NodePath("WeaponModel")
 weapon_anims = NodePath("Animations")
 hitbox = NodePath("WeaponModel/MeleeHitbox")
 sound = NodePath("AudioStreamPlayer3D")
 attack_move_multiplier = 0.2
-current_weapon_anim = null
-current_animation_time = null
 
 [node name="Animations" type="AnimationPlayer" parent="." index="1"]
 playback_process_mode = 0
@@ -346,13 +444,35 @@ texture_filter = 0
 texture = ExtResource("1_5bxbu")
 
 [node name="MeleeHitbox" type="Area3D" parent="WeaponModel" index="1"]
+collision_layer = 3
+collision_mask = 2
 script = ExtResource("5_6nk30")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponModel/MeleeHitbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555373, 0.00766873)
 shape = SubResource("BoxShape3D_2vhf0")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="3"]
+[node name="Hand" type="Node3D" parent="." index="3"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.544372, -0.437181, -0.0494687)
+
+[node name="Sprite3D" type="Sprite3D" parent="Hand" index="0"]
+transform = Transform3D(-0.52374, -2.58096e-08, -1.93021, -2.98023e-08, 2, -5.96046e-08, 1.93021, -1.49012e-08, -0.52374, 0, 0, 0)
+pixel_size = 0.02
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("6_47ovb")
+
+[node name="MeleeHitbox" type="Area3D" parent="Hand" index="1"]
+collision_mask = 2
+script = ExtResource("5_6nk30")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hand/MeleeHitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012639, 0.00630698, 0.00766885)
+shape = SubResource("BoxShape3D_5urhg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="4"]
 stream = SubResource("AudioStreamRandomizer_klsrf")
 
 [connection signal="body_entered" from="WeaponModel/MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]
+[connection signal="body_entered" from="Hand/MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]

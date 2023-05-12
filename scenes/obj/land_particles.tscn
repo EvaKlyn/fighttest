@@ -26,8 +26,8 @@ shader_parameter/albedo_tex = ExtResource("3_fohgq")
 
 [sub_resource type="SphereMesh" id="SphereMesh_qdy5p"]
 material = SubResource("ShaderMaterial_vc2te")
-radial_segments = 12
-rings = 12
+radial_segments = 32
+rings = 16
 
 [node name="LandingParticles" type="Node3D"]
 script = ExtResource("1_uxqxa")

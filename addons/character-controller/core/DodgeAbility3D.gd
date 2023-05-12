@@ -1,6 +1,8 @@
 extends MovementAbility3D
 class_name DodgeAbility3D
 
+signal dodged
+
 @export var dodge_strength: float = 15.0
 @export var dodge_cooldown: float = 0.8
 @export var iframe_duration: float = 0.3
@@ -14,8 +16,8 @@ func apply(velocity: Vector3, speed : float, is_on_floor : bool, direction : Vec
 		return velocity
 	if just_dodged:
 		return velocity
-	
-	print("dodge!")
+	if velocity.length() < 5.0:
+		return velocity
 	
 	var temp_velocity := velocity
 	temp_velocity = direction * dodge_strength
@@ -28,6 +30,8 @@ func apply(velocity: Vector3, speed : float, is_on_floor : bool, direction : Vec
 	get_parent().dodge = true
 	get_tree().create_timer(dodge_cooldown).timeout.connect(func(): just_dodged = false)
 	get_tree().create_timer(iframe_duration).timeout.connect(func(): get_parent().dodge = false)
+	
+	emit_signal("dodged")
 	
 	return velocity
 	

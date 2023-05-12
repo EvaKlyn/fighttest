@@ -22,7 +22,7 @@ class_name HeadBob
 @export var curve_multiplier = Vector2(2,2)
 
 ## ## Difference of step headbob movement between vertical and horizontal angle
-@export var vertical_horizontal_ratio = 2
+var vertical_horizontal_ratio = 2
 
 
 @export_group("Jump Bob")
@@ -125,6 +125,7 @@ func _do_head_bob(speed: float, delta: float) -> Vector3:
 
 	var tick_speed = (speed * delta) / step_interval
 	cycle_position_x += tick_speed
+	vertical_horizontal_ratio = 2
 	cycle_position_y += tick_speed * vertical_horizontal_ratio
 
 	if(cycle_position_x > 1):

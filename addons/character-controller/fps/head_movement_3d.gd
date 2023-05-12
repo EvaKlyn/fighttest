@@ -3,6 +3,7 @@ class_name HeadMovement3D
 
 ## Node that moves the character's head
 ## To move just call the function [b]rotate_camera[/b]
+var original_position: Vector3
 
 ## Mouse sensitivity of rotation move
 @export var mouse_sensitivity := 2.0
@@ -18,10 +19,12 @@ var body_locked := true
 func set_mouse_sensitivity(sensitivity):
 	mouse_sensitivity = sensitivity
 
-
 ## Define vertical angle limit for rotation movement of head
 func set_vertical_angle_limit(limit : float):
 	vertical_angle_limit = deg_to_rad(limit)
+
+func _process(delta):
+	original_position = position
 
 ## Rotates the head of the character that contains the camera used by 
 ## [FPSController3D].
@@ -41,3 +44,8 @@ func rotate_only_camera(mouse_axis : Vector2) -> void:
 	rotate_y(-1 * mouse_axis.x * (mouse_sensitivity/1000))
 	rotation.x = actual_rotation.x
 	body_locked = false
+
+func roll_dip():
+	var tween = create_tween()
+	tween.tween_property(self, "position", Vector3(position.x, position.y - 1.3, position.z), 0.27).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "position", original_position, 0.22).set_trans(Tween.TRANS_SINE)

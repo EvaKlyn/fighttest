@@ -218,6 +218,11 @@ var dodge := false
 # is equal to a string of the most relevant current state for attacks
 var attack_state := "idle"
 
+#equal to the time since last time the dahs button was pressed
+var dash_hold_time: float = 0
+var dash_window: float = 0.3
+var valid_dash = false
+
 ## Loads all character controller skills and sets necessary variables
 func setup():
 	_direction_base_node = self
@@ -229,6 +234,15 @@ func setup():
 func add_hit_stun(time) -> void:
 	if time > hit_stun_time:
 		hit_stun_time = time
+
+func _physics_process(delta):
+	valid_dash = false
+	if Input.is_action_pressed("move_sprint"):
+			dash_hold_time += delta
+	if Input.is_action_just_released("move_sprint"):
+		if dash_hold_time < dash_window:
+			valid_dash = true
+		dash_hold_time = 0.0
 
 ## Moves the character controller.
 ## parameters are inputs that are sent to be handled by all abilities.
@@ -251,11 +265,10 @@ func move(_delta: float, input_axis := Vector2.ZERO, input_jump := false, input_
 		walk_ability.set_active(not dodge and not is_fly_mode() and not swim_ability.is_floating())
 		crouch_ability.set_active(input_crouch and is_on_floor() and not is_floating() and not is_submerged() and not is_fly_mode())
 		sprint_ability.set_active(input_sprint and is_on_floor() and  input_axis.x >= 0.5 and !is_crouching() and not is_fly_mode() and not swim_ability.is_floating() and not swim_ability.is_submerged())
-		dodge_ability.set_active(input_jump and not input_sprint and not is_sprinting())
-		jump_ability.set_active(input_jump and is_on_floor() and not head_check.is_colliding() and input_sprint)
+		jump_ability.set_active(input_jump and is_on_floor() and not head_check.is_colliding())
+		dodge_ability.set_active(valid_dash)
 	
 	knockback.set_active(is_hit and not dodge)
-	
 	
 	var multiplier = 1.0
 	for ability in _abilities:

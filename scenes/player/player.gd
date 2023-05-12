@@ -78,6 +78,7 @@ func _physics_process(delta):
 			$CanvasLayer.visible = false
 	
 	if is_multiplayer_authority():
+		super(delta)
 		var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 		var guarded_last_frame = guarding
 		
@@ -100,8 +101,10 @@ func _physics_process(delta):
 		if not dodge and not hit_stunned and not guarding:
 			if Input.is_action_just_pressed("attack"):
 				current_weapon.attack(attack_state)
-			if Input.is_action_just_pressed("special"):
-				current_weapon.special(attack_state)
+			if Input.is_action_just_pressed("shatter_attack"):
+				current_weapon.shield_break(attack_state)
+			if Input.is_action_just_pressed("special_1"):
+				current_weapon.special(attack_state, 1)
 		
 		if is_valid_input and not hit_stunned and not current_weapon.attacking:
 			last_input_state = {
@@ -121,7 +124,7 @@ func _physics_process(delta):
 				add_hit_stun(0.25)
 			
 			if guarding:
-				move(delta, Vector2.ZERO, input_jump, input_crouch, input_sprint)
+				move(delta, Vector2.ZERO, false, false, false)
 				shield_mesh.visible = true
 				shield_hp -= 0.25
 				var scale_fac = float(shield_hp / max_shield_hp)
@@ -213,6 +216,14 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 	is_hit = true
 	
 	if shield_hp > 10 and guarding:
+		if properties.shattering:
+			shield_hp = 0.0
+			add_hit_stun(1.0)
+			reduce_health(properties.damage)
+			spawn_hurt_particles()
+			current_weapon.stop_attacks()
+			return
+		
 		shield_hp -= properties.damage
 		knockback.power = properties.launch_power * 0.25 * knockback_multiplier
 		knockback.knockup = up_amt * 0.25
