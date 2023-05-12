@@ -1,0 +1,206 @@
+[gd_scene load_steps=13 format=3 uid="uid://dlybjknss6baj"]
+
+[ext_resource type="PackedScene" uid="uid://cr4d14eps6xpf" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_fbpun"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="2_8r0nc"]
+[ext_resource type="Environment" uid="uid://b3cn01u84faiy" path="res://addons/character-controller/example/main/underwater.tres" id="3_dxksd"]
+[ext_resource type="PackedScene" uid="uid://b1oagcoh1u8bb" path="res://addons/character-controller/example/main/audios/player_audios.tscn" id="4_ux8kv"]
+[ext_resource type="Shader" path="res://resources/mat/shield.gdshader" id="5_twrjt"]
+[ext_resource type="AudioStream" uid="uid://bgdeqr1enc6l1" path="res://assets/sound/hitHurt.wav" id="6_tbng5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yh2tc"]
+radius = 0.4
+height = 1.5
+radial_segments = 8
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_ta66s"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_74nu3"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2s8c"]
+render_priority = 0
+shader = ExtResource("5_twrjt")
+shader_parameter/albedo = Color(0, 0.67451, 0.839216, 1)
+shader_parameter/emission_color = Color(0.160784, 1, 1, 1)
+shader_parameter/emission_amount = 6.765
+shader_parameter/rim_steepness = 5.353
+shader_parameter/uv_scale = null
+shader_parameter/uv_offset = null
+
+[sub_resource type="SphereMesh" id="SphereMesh_dh2kb"]
+material = SubResource("ShaderMaterial_r2s8c")
+flip_faces = true
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_803co"]
+properties/0/path = NodePath(".:player_alias")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("Vis/Label3D:text")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("Vis/MeshInstance3D/Node3D:rotation")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath(".:hit_stunned")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("AnimationPlayer:current_animation")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath(".:current_animation_time")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("ShieldMesh:visible")
+properties/8/spawn = true
+properties/8/sync = true
+properties/9/path = NodePath("ShieldMesh:scale")
+properties/9/spawn = true
+properties/9/sync = true
+properties/10/path = NodePath(".:current_hp")
+properties/10/spawn = true
+properties/10/sync = true
+
+[node name="Player" node_paths=PackedStringArray("current_weapon") instance=ExtResource("1_fbpun")]
+script = ExtResource("2_8r0nc")
+player_alias = "WHOOPS"
+current_animation_time = 0.0
+current_hp = 100
+current_weapon = NodePath("")
+max_hp = 100
+max_shield_hp = 100
+knockback_multiplier = 1.0
+input_back_action_name = "move_backward"
+input_forward_action_name = "move_forward"
+input_left_action_name = "move_left"
+input_right_action_name = "move_right"
+input_sprint_action_name = "move_sprint"
+input_jump_action_name = "move_jump"
+input_crouch_action_name = "move_crouch"
+underwater_env = ExtResource("3_dxksd")
+speed = 6
+acceleration = 30
+air_control = 1.0
+sprint_speed_multiplier = 1.6
+step_lengthen = 0.4
+step_interval = 4.0
+crouch_speed_multiplier = 0.6
+abilities_path = Array[NodePath]([NodePath("Crouch Ability 3D"), NodePath("Sprint Ability 3D"), NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D"), NodePath("DodgeAbility3D"), NodePath("KnockbackAbility")])
+
+[node name="Player Audios" parent="." index="0" instance=ExtResource("4_ux8kv")]
+
+[node name="Walk Ability 3D" parent="." index="3"]
+acceleration = 1
+air_control = 1.0
+
+[node name="Camera" parent="Head" index="0"]
+current = false
+fov = 85.0
+
+[node name="DodgeAbility3D" parent="." index="10"]
+dodge_strength = 10.0
+dodge_cooldown = 0.5
+iframe_duration = 0.4
+
+[node name="Vis" type="Node3D" parent="." index="12"]
+
+[node name="Label3D" type="Label3D" parent="Vis" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23172, 0)
+billboard = 1
+text = "Name"
+
+[node name="HealthLabel" type="Label3D" parent="Vis" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4871, 0)
+billboard = 1
+text = "100%"
+font_size = 72
+outline_size = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vis" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.38419e-07, 0, 2.38419e-07, 1, 0, -0.24865, 0)
+gi_mode = 2
+mesh = SubResource("CapsuleMesh_yh2tc")
+skeleton = NodePath("../..")
+
+[node name="Node3D" type="Node3D" parent="Vis/MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685009, -0.147766)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vis/MeshInstance3D/Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158789, -0.168208)
+mesh = SubResource("BoxMesh_ta66s")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Vis/MeshInstance3D/Node3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.071429, -0.420025)
+mesh = SubResource("PrismMesh_74nu3")
+
+[node name="ShieldMesh" type="MeshInstance3D" parent="." index="13"]
+mesh = SubResource("SphereMesh_dh2kb")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="14"]
+replication_config = SubResource("SceneReplicationConfig_803co")
+visibility_update_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="15"]
+
+[node name="Hud" type="Control" parent="CanvasLayer" index="0"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HpLabel" type="Label" parent="CanvasLayer/Hud" index="0"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -70.0
+offset_right = 78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 48
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrueHpLabel" type="Label" parent="CanvasLayer/Hud" index="1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -114.0
+offset_right = 78.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 24
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466824, 0)
+stream = ExtResource("6_tbng5")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://djkqu5udlsik3"]
+
+[ext_resource type="Script" path="res://scenes/obj/spawn_point.gd" id="1_6oiyi"]
+
+[node name="SpawnPoint" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 1, 42)
+script = ExtResource("1_6oiyi")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+gizmo_extents = 0.67

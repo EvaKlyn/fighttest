@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1oagcoh1u8bb"]
+
+[ext_resource type="Script" path="res://addons/character-controller/example/main/audios/player_audios_3d.gd" id="1_5jhob"]
+[ext_resource type="AudioStream" uid="uid://bdmaa3x37xwa0" path="res://resources/audiostream/random_footstep.tres" id="2_4ffth"]
+
+[node name="Player Audios" type="Node3D"]
+script = ExtResource("1_5jhob")
+
+[node name="Jump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_4ffth")
+attenuation_filter_db = -65.4
+
+[node name="Step" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_4ffth")
+attenuation_filter_db = -65.4
+
+[node name="Land" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_4ffth")
+attenuation_filter_db = -65.4
+
+[node name="Crouch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_4ffth")
+attenuation_filter_db = -65.4
+
+[node name="Uncrouch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_4ffth")
+attenuation_filter_db = -65.4
+
+[node name="Detect Ground" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.5, 0)

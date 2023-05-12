@@ -1,0 +1,362 @@
+[gd_scene load_steps=24 format=3 uid="uid://dohd08viqgmk3"]
+
+[ext_resource type="Texture2D" uid="uid://dhfhkb2spa0a" path="res://assets/img/sword.png" id="1_5bxbu"]
+[ext_resource type="Script" path="res://scenes/weapons/longsword.gd" id="1_857cd"]
+[ext_resource type="PackedScene" uid="uid://bvb748yhrl8ks" path="res://scenes/weapons/base_melee.tscn" id="1_dlt4q"]
+[ext_resource type="Script" path="res://resources/customtypes/attack_properties.gd" id="2_70a1w"]
+[ext_resource type="Script" path="res://resources/customtypes/smoother.gd" id="4_g6jog"]
+[ext_resource type="Script" path="res://resources/customtypes/melee_hitbox.gd" id="5_6nk30"]
+[ext_resource type="AudioStream" uid="uid://bgo3qp1b6ktsb" path="res://assets/sound/slash.wav" id="6_8bkw6"]
+
+[sub_resource type="Animation" id="Animation_06xb6"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.832, 0, -0.65)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_121c6"]
+resource_name = "clash"
+length = 0.4
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.0011335, 0, -1.0555, 0.2, 1, 0.824963, 0.828276, -0.793334, 0.3, 1, 0.79175, 0.817517, -0.850782)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.182235, 0.0499223, -0.25945, 0.947092, 0.2, 1, 0.168438, 0.222451, -0.13214, 0.951148, 0.3, 1, 0.130507, 0.227526, -0.123196, 0.95709)
+
+[sub_resource type="Resource" id="Resource_hxb1d"]
+script = ExtResource("2_70a1w")
+damage = 6
+launch_power = 6.0
+stun_time = 0.3
+position_offset = Vector2(0, 0)
+knockup_amount = 1.0
+
+[sub_resource type="Animation" id="Animation_ua6s1"]
+resource_name = "crouch_stab"
+length = 0.45
+step = 0.0166667
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.037, 0, -0.021, 0.2004, 1, 0.037, 0, -1.044, 0.4342, 1, 0.037, 0, -1.044)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 0, 0, 0.707107, 0.4342, 1, -0.692591, 0.14254, -0.14254, 0.692591)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_do_sound"
+}, {
+"args": [SubResource("Resource_hxb1d")],
+"method": &"activate_melee_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_melee_hitbox"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ybb6b"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.832, 0, -0.65)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_k2snw"]
+script = ExtResource("2_70a1w")
+damage = 10
+launch_power = 0.0
+stun_time = 0.6
+position_offset = Vector2(0, 0)
+knockup_amount = 15.0
+
+[sub_resource type="Animation" id="Animation_73w8r"]
+resource_name = "special"
+length = 1.23334
+step = 0.0333333
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.799, 0, 0.394, 0.3, 1, 0.893, 0, -0.457, 0.5, 1, 0.013, 0, -1.057, 0.6, 1, -0.834, 0, 0.031, 0.666667, 1, 0.033, 0, 0.7, 0.866667, 1, 0.893, 0, -0.457)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.0922959, -0.0922959, -0.701057, 0.701057, 0.3, 1, 0, 0, -0.707107, 0.707107, 0.5, 1, -0.5, 0.5, -0.5, 0.5, 0.6, 1, -0.707107, 0.707107, 3.09086e-08, -3.09086e-08, 0.666667, 1, 0.5, -0.5, -0.5, 0.5, 0.866667, 1, -8.42937e-08, 8.42937e-08, -0.707106, 0.707107, 1.23333, 1, -0.0972308, 0.0972309, -0.70039, 0.70039)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 0.1998, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_do_sound"
+}, {
+"args": [SubResource("Resource_k2snw")],
+"method": &"activate_melee_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_melee_hitbox"
+}]
+}
+
+[sub_resource type="Resource" id="Resource_5svgb"]
+script = ExtResource("2_70a1w")
+damage = 6
+launch_power = 3.0
+stun_time = 0.3
+position_offset = Vector2(1, -1)
+knockup_amount = 4.0
+
+[sub_resource type="Animation" id="Animation_o7evh"]
+resource_name = "swing"
+length = 0.45
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.909259, 0, -0.413664, 0.1, 1, 0.746, 0, -0.85, 0.15, 1, 0.142229, 0, -1.25326, 0.25, 1, -1.05592, 0, -0.471517, 0.45, 1, -1.05592, 0, -0.471517)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.288826, 0.0446793, -0.669797, 0.68261, 0.1, 1, -0.464505, 0.233667, -0.56239, 0.642924, 0.15, 1, -0.593573, 0.416748, -0.444477, 0.525768, 0.25, 1, 0.699462, -0.654144, 0.180763, -0.223993, 0.45, 1, 0.699462, -0.654144, 0.180763, -0.223993)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_do_sound"
+}, {
+"args": [SubResource("Resource_5svgb")],
+"method": &"activate_melee_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_melee_hitbox"
+}]
+}
+
+[sub_resource type="Resource" id="Resource_k5ddp"]
+script = ExtResource("2_70a1w")
+damage = 11
+launch_power = 12.0
+stun_time = 0.6
+position_offset = Vector2(0, 0)
+knockup_amount = 10.0
+
+[sub_resource type="Animation" id="Animation_4ads4"]
+resource_name = "swing2"
+length = 0.7574
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.832, 0, -0.65, 0.2, 1, 0.832, 1.335, -0.65, 0.4, 1, -0.521884, 0.28863, -1.77018, 0.75, 1, -0.567388, 0.0560726, -1.77018)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, 0.208393, 0.15448, 0.0123057, 0.96569, 0.4, 1, -0.744171, 0.0645778, 0.0973158, 0.657699, 0.75, 1, -0.744171, 0.0645778, 0.0973158, 0.657699)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.35, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_do_sound"
+}, {
+"args": [SubResource("Resource_k5ddp")],
+"method": &"activate_melee_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_melee_hitbox"
+}]
+}
+
+[sub_resource type="Resource" id="Resource_pdx08"]
+script = ExtResource("2_70a1w")
+damage = 9
+launch_power = 8.0
+stun_time = 0.5
+position_offset = Vector2(0, 0)
+knockup_amount = 1.0
+
+[sub_resource type="Animation" id="Animation_o31xy"]
+resource_name = "swing3"
+length = 0.7
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.0490002, 0.501593, -0.65, 0.15, 1, 0.0490002, 0.501593, -0.65, 0.3, 1, 0.0490002, -0.224455, -0.974773, 0.5, 1, 0.0490002, -0.35185, -0.857994)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.229803, 0, 0, 0.973237, 0.15, 1, 0.229803, 0, 0, 0.973237, 0.3, 1, -0.727946, 0, 0, 0.685634, 0.5, 1, -0.727945, 0, 0, 0.685634)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.2, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_do_sound"
+}, {
+"args": [SubResource("Resource_pdx08")],
+"method": &"activate_melee_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_melee_hitbox"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1uj1"]
+_data = {
+"RESET": SubResource("Animation_06xb6"),
+"clash": SubResource("Animation_121c6"),
+"crouch_stab": SubResource("Animation_ua6s1"),
+"idle": SubResource("Animation_ybb6b"),
+"special": SubResource("Animation_73w8r"),
+"swing": SubResource("Animation_o7evh"),
+"swing2": SubResource("Animation_4ads4"),
+"swing3": SubResource("Animation_o31xy")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2vhf0"]
+size = Vector3(0.249722, 1.33382, 0.573241)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_klsrf"]
+streams_count = 1
+playback_mode = 1
+random_pitch = 1.68
+stream_0/stream = ExtResource("6_8bkw6")
+stream_0/weight = 1.0
+
+[node name="Longsword" node_paths=PackedStringArray("weapon_model", "weapon_anims", "hitbox", "sound") instance=ExtResource("1_dlt4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_857cd")
+weapon_model = NodePath("WeaponModel")
+weapon_anims = NodePath("Animations")
+hitbox = NodePath("WeaponModel/MeleeHitbox")
+sound = NodePath("AudioStreamPlayer3D")
+attack_move_multiplier = 0.2
+current_weapon_anim = null
+current_animation_time = null
+
+[node name="Animations" type="AnimationPlayer" parent="." index="1"]
+playback_process_mode = 0
+libraries = {
+"": SubResource("AnimationLibrary_q1uj1")
+}
+
+[node name="WeaponModel" type="Node3D" parent="." index="2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0.832, 0, -0.65)
+
+[node name="Sprite3D" type="Sprite3D" parent="WeaponModel" index="0"]
+transform = Transform3D(0.511533, -2.98023e-08, -1.93348, -2.98023e-08, 2, -5.96046e-08, 1.93348, 0, 0.511533, -5.96046e-08, 0.525163, -8.9407e-08)
+pixel_size = 0.02
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_5bxbu")
+
+[node name="Smoother" type="Node" parent="WeaponModel" index="1"]
+script = ExtResource("4_g6jog")
+
+[node name="MeleeHitbox" type="Area3D" parent="WeaponModel" index="2"]
+script = ExtResource("5_6nk30")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponModel/MeleeHitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555373, 0.00766873)
+shape = SubResource("BoxShape3D_2vhf0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_klsrf")
+
+[connection signal="body_entered" from="WeaponModel/MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]

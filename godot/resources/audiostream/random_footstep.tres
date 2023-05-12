@@ -1,0 +1,20 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=6 format=3 uid="uid://bdmaa3x37xwa0"]
+
+[ext_resource type="AudioStream" uid="uid://dyj8811150sq5" path="res://addons/character-controller/example/main/jute-dh-steps/stepdirt_1.wav" id="1_u0uy5"]
+[ext_resource type="AudioStream" uid="uid://c2cl56b4rns2u" path="res://addons/character-controller/example/main/jute-dh-steps/stepdirt_2.wav" id="2_1f466"]
+[ext_resource type="AudioStream" uid="uid://7gjj4wse1p7s" path="res://addons/character-controller/example/main/jute-dh-steps/stepdirt_3.wav" id="3_750lp"]
+[ext_resource type="AudioStream" uid="uid://p8tdym4d3gwm" path="res://addons/character-controller/example/main/jute-dh-steps/stepdirt_4.wav" id="4_5188j"]
+[ext_resource type="AudioStream" uid="uid://b6cfvl2uik7t1" path="res://addons/character-controller/example/main/jute-dh-steps/stepdirt_5.wav" id="5_wfjkj"]
+
+[resource]
+streams_count = 5
+stream_0/stream = ExtResource("1_u0uy5")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_1f466")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_750lp")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_5188j")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_wfjkj")
+stream_4/weight = 1.0

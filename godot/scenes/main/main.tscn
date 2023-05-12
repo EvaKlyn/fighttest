@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpn6k040kqie6"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_66ehm"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_66ehm")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player/classes/burial.tscn", "res://scenes/map.tscn")
+spawn_path = NodePath("../Networked")
+
+[node name="Networked" type="Node3D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5313
+offset_top = -20.0
+offset_right = 33.5313
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="AliasEdit" type="LineEdit" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "alias"
+
+[node name="IpLineEdit" type="LineEdit" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "localhost"
+placeholder_text = "ip address"
+
+[node name="PortLineEdit" type="LineEdit" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "6665"
+placeholder_text = "port"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ConnectButton" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Connect
+"
+
+[node name="Control" type="Control" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(33, 0)
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Label" type="Label" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "vv Settings vv"
+
+[node name="LowGraphicsCheck" type="CheckBox" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "low graphics mode"
+
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/HBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="toggled" from="Control/PanelContainer/VBoxContainer/LowGraphicsCheck" to="." method="_on_low_graphics_check_toggled"]

@@ -1,0 +1,94 @@
+[gd_scene load_steps=18 format=3 uid="uid://cacs76kg8rqnj"]
+
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_mx28y"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_dkvcn"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="3_fxenb"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="4_bwxkq"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="5_up4eh"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="6_codb2"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="7_1shqx"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="8_0d5mt"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="9_fa8ns"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/common/physics_helper.gd" id="10_sr3r6"]
+
+[sub_resource type="Resource" id="Resource_nmqcq"]
+script = ExtResource("3_fxenb")
+amount = 20
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_rqrh7"]
+script = ExtResource("4_bwxkq")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(0, 360, 0)
+scale = Vector3(0.1, 0.1, 0.1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_8b57x"]
+script = ExtResource("5_up4eh")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_wuj6k"]
+script = ExtResource("6_codb2")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_rf4vr"]
+script = ExtResource("2_dkvcn")
+stack = Array[Resource]([SubResource("Resource_nmqcq"), SubResource("Resource_rqrh7"), SubResource("Resource_8b57x"), SubResource("Resource_wuj6k")])
+
+[sub_resource type="Curve3D" id="Curve3D_d1y74"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -11.039, 0, 13.2702, 0, 0, 0, 0, 0, 0, -38.6027, 0, 7.00525, 0, 0, 0, 0, 0, 0, -37.465, 0, -4.04018, 0, 0, 0, 0, 0, 0, -46.47, 0, -14.9052, 0, 0, 0, 0, 0, 0, -55.6254, 0, -24.3755, 0, 0, 0, 0, 0, 0, -57.3553, 0, -33.9818, 0, 0, 0, 0, 0, 0, -52.2557, 0, -39.0524, 0, 0, 0, 0, 0, 0, -41.0127, 0, -42.2063, 0, 0, 0, 0, 0, 0, -29.1156, 0, -35.8539, 0, 0, 0, 0, 0, 0, -20.3077, 0, -30.7524, 0, 0, 0, 0, 0, 0, 4.46919, 0, -12.6711, 0, 0, 0, 0, 0, 0, 27.7684, 0, 2.72211, 0, 0, 0, 0, 0, 0, 40.0178, 0, 6.22479, 0, 0, 0, 0, 0, 0, 48.8583, 0, 8.88953, 0, 0, 0, 0, 0, 0, 57.0442, 0, 23.0997, 0, 0, 0, 0, 0, 0, 50.3922, 0, 41.4215, 0, 0, 0, 0, 0, 0, 36.9159, 0, 50.4875, 0, 0, 0, 0, 0, 0, 28.7057, 0, 34.1301, 0, 0, 0, 0, 0, 0, 16.4288, 0, 18.4517, 0, 0, 0, 0, 0, 0, 2.67786, 0, 12.9974),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 20
+
+[sub_resource type="Resource" id="Resource_ab6pe"]
+script = ExtResource("9_fa8ns")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_d1y74")
+
+[node name="ProtonScatter5" type="Node3D"]
+script = ExtResource("1_mx28y")
+modifier_stack = SubResource("Resource_rf4vr")
+
+[node name="ScatterItem" type="Node3D" parent="."]
+script = ExtResource("7_1shqx")
+source_scale_multiplier = 10.0
+path = "res://scenes/prop/deadtree.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="."]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("8_0d5mt")
+shape = SubResource("Resource_ab6pe")
+
+[node name="32655" type="Node" parent="."]
+script = ExtResource("10_sr3r6")
+
+[node name="ScatterOutput" type="Marker3D" parent="."]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmfihgpwa3km"]
+
+[ext_resource type="PackedScene" uid="uid://dlybjknss6baj" path="res://scenes/player/player.tscn" id="1_gmh56"]
+[ext_resource type="PackedScene" uid="uid://dohd08viqgmk3" path="res://scenes/weapons/longsword.tscn" id="2_7nb22"]
+[ext_resource type="Script" path="res://scenes/player/classes/burial.gd" id="2_icigi"]
+
+[sub_resource type="Animation" id="Animation_sw0te"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hvpxw"]
+resource_name = "dodge"
+length = 0.4
+step = 0.05
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vis/MeshInstance3D")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, 1, 0, 0, -4.37114e-08, 0.3, 1, 0.634393, 0, 0, 0.77301, 0.4, 1, 1.19209e-07, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4q6j"]
+_data = {
+"RESET": SubResource("Animation_sw0te"),
+"dodge": SubResource("Animation_hvpxw")
+}
+
+[node name="Burial" node_paths=PackedStringArray("current_weapon", "body_animations") instance=ExtResource("1_gmh56")]
+script = ExtResource("2_icigi")
+current_weapon = NodePath("Longsword")
+body_animations = NodePath("AnimationPlayer")
+knockback_multiplier = 0.8
+underwater_env = null
+acceleration = 8
+air_control = 0.3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_i4q6j")
+}
+
+[node name="Longsword" parent="." index="1" instance=ExtResource("2_7nb22")]
+
+[node name="DodgeAbility3D" parent="." index="12"]
+dodge_strength = 7.0

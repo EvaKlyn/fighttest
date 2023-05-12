@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvb748yhrl8ks"]
+
+[ext_resource type="Script" path="res://scenes/weapons/base_melee.gd" id="1_ih8yo"]
+[ext_resource type="AudioStream" uid="uid://bey3t4jstjd2a" path="res://assets/sound/clash.wav" id="2_wuj86"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oji7q"]
+properties/0/path = NodePath(".:current_weapon_anim")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:current_animation_time")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="MeleeWeapon" type="Node3D" node_paths=PackedStringArray("weapon_model", "weapon_anims", "hitbox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+script = ExtResource("1_ih8yo")
+weapon_model = NodePath("")
+weapon_anims = NodePath("")
+hitbox = NodePath("")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.03
+replication_config = SubResource("SceneReplicationConfig_oji7q")
+
+[node name="ClashSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_wuj86")
