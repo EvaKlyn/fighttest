@@ -45,9 +45,6 @@ script = ExtResource("7_7rh6f")
 [node name="DodgeAbility3D" type="Node3D" parent="."]
 script = ExtResource("8_x2dt2")
 dodge_strength = 30.0
-dodge_cooldown = null
-iframe_duration = null
-_active = null
 
 [node name="Swim Ability 3D" type="Node3D" parent="."]
 script = ExtResource("12_3irqv")

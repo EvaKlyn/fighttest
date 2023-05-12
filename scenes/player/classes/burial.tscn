@@ -29,7 +29,6 @@ _data = {
 script = ExtResource("2_icigi")
 current_weapon = NodePath("Longsword")
 body_animations = NodePath("AnimationPlayer")
-knockback_multiplier = 0.8
 underwater_env = null
 acceleration = 8
 air_control = 0.3
