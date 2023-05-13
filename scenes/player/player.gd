@@ -104,8 +104,7 @@ func _physics_process(delta):
 				current_weapon.attack(attack_state)
 			if Input.is_action_just_pressed("shatter_attack"):
 				current_weapon.shield_break(attack_state)
-			if Input.is_action_just_pressed("special_1"):
-				current_weapon.special(attack_state, 1)
+			
 		
 		if is_valid_input and not hit_stunned and not current_weapon.attacking:
 			last_input_state = {
@@ -206,7 +205,7 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 	
 	var properties: AttackProperties
 	if ser_props["dmg"] is int and ser_props["power"] is float and ser_props["stun"] is float:
-		properties = AttackProperties.new(ser_props["dmg"], ser_props["power"], ser_props["stun"])
+		properties = AttackProperties.new(ser_props["dmg"], ser_props["power"], ser_props["stun"], Vector2.ZERO, ser_props["shatter"])
 	else:
 		properties = AttackProperties.new()
 	
@@ -226,11 +225,12 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 			reduce_health(properties.damage)
 			spawn_hurt_particles()
 			current_weapon.stop_attacks()
-			return
+			
+		else:
+			shield_hp -= properties.damage
+			knockback.power = properties.launch_power * 0.25 * knockback_multiplier
+			knockback.knockup = up_amt * 0.25
 		
-		shield_hp -= properties.damage
-		knockback.power = properties.launch_power * 0.25 * knockback_multiplier
-		knockback.knockup = up_amt * 0.25
 		return
 	
 	reduce_health(properties.damage)

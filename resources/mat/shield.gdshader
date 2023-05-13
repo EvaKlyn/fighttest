@@ -6,7 +6,7 @@
 */
 
 shader_type spatial;
-render_mode unshaded;
+render_mode diffuse_burley;
 
 uniform vec4 barrier_color: source_color = vec4( 0.05, 1.0, 0.5, 1.0 );
 uniform float barrier_force = 1.0;
@@ -18,5 +18,6 @@ void fragment( )
 	vec3 v = ( INV_VIEW_MATRIX * vec4( VERTEX, 1.0 ) ).xyz;
 	float f = sin( v.y * barrier_interval + TIME * barrier_speed );
 	ALBEDO = barrier_color.rgb;
+	EMISSION = barrier_color.rgb;
 	ALPHA = clamp( ( 1.0 - dot( NORMAL, VIEW ) ) * f * barrier_force, 0.0, 1.0 );
 }

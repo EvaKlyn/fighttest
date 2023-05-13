@@ -21,6 +21,7 @@ var hitbox_active: bool = false
 var current_attack_properties: AttackProperties = AttackProperties.new(10, 10.0, 0.2)
 var attacking: bool = false
 var current_attack_id = uuid.new().as_string()
+var current_attack_type: String = "attack"
 
 func _ready():
 	hitbox.body_entered.connect(func(body): _on_melee_hitbox_body_entered(body))
@@ -55,11 +56,11 @@ func _physics_process(_delta):
 		hitbox.attacking = attack_active
 
 func attack(attack_state) -> void:
-	pass
-
-func special(attack_state, index: int) -> void:
-	pass
+	current_attack_type = "attack"
 	
+func special(attack_state, index: int) -> void:
+	current_attack_type = "special"
+
 func shield_break(attack_state) -> void:
 	pass
 	

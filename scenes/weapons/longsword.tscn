@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dohd08viqgmk3"]
+[gd_scene load_steps=29 format=3 uid="uid://dohd08viqgmk3"]
 
 [ext_resource type="Texture2D" uid="uid://dhfhkb2spa0a" path="res://assets/img/sword.png" id="1_5bxbu"]
 [ext_resource type="Script" path="res://scenes/weapons/longsword.gd" id="1_857cd"]
@@ -209,7 +209,7 @@ shattering = false
 
 [sub_resource type="Animation" id="Animation_73w8r"]
 resource_name = "special"
-length = 1.23334
+length = 0.9333
 step = 0.0333333
 tracks/0/type = "position_3d"
 tracks/0/imported = false
@@ -217,14 +217,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("WeaponModel")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.799, 0, 0.394, 0.3, 1, 0.893, 0, -0.457, 0.5, 1, 0.013, 0, -1.057, 0.6, 1, -0.834, 0, 0.031, 0.666667, 1, 0.033, 0, 0.7, 0.866667, 1, 0.893, 0, -0.457)
+tracks/0/keys = PackedFloat32Array(0, 1, 0.799, 0, 0.394, 0.1998, 1, 0.893, 0, -0.457, 0.3996, 1, 0.013, 0, -1.057, 0.4995, 1, -0.834, 0, 0.031, 0.5661, 1, 0.033, 0, 0.7, 0.7659, 1, 0.893, 0, -0.457)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("WeaponModel")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.0922959, -0.0922959, -0.701057, 0.701057, 0.3, 1, 0, 0, -0.707107, 0.707107, 0.5, 1, -0.5, 0.5, -0.5, 0.5, 0.6, 1, -0.707107, 0.707107, 3.09086e-08, -3.09086e-08, 0.666667, 1, 0.5, -0.5, -0.5, 0.5, 0.866667, 1, -8.42937e-08, 8.42937e-08, -0.707106, 0.707107, 1.23333, 1, -0.0972308, 0.0972309, -0.70039, 0.70039)
+tracks/1/keys = PackedFloat32Array(0, 1, 0.0922959, -0.0922959, -0.701057, 0.701057, 0.1998, 1, 0, 0, -0.707107, 0.707107, 0.3996, 1, -0.5, 0.5, -0.5, 0.5, 0.4995, 1, -0.707107, 0.707107, 3.09086e-08, -3.09086e-08, 0.5661, 1, 0.5, -0.5, -0.5, 0.5, 0.7659, 1, -8.42937e-08, 8.42937e-08, -0.707106, 0.707107, 0.9324, 1, -0.0972308, 0.0972309, -0.70039, 0.70039)
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -239,6 +239,54 @@ tracks/2/keys = {
 "method": &"_do_sound"
 }, {
 "args": [SubResource("Resource_k2snw")],
+"method": &"activate_melee_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_melee_hitbox"
+}]
+}
+
+[sub_resource type="Resource" id="Resource_xtvl4"]
+script = ExtResource("2_70a1w")
+damage = 7
+launch_power = 5.0
+stun_time = 0.5
+position_offset = Vector2(0, 0)
+knockup_amount = 12.0
+shattering = false
+
+[sub_resource type="Animation" id="Animation_xw0sq"]
+resource_name = "special_2"
+length = 0.7
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.0490002, -0.700405, -0.572957, 0.15, 1, 0.0490002, -0.153376, -1.06351, 0.35, 1, 0.0490002, 1.41624, -0.441469, 0.65, 1, 0.0490002, 1.41624, -0.441469)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.934915, 0, 0, -0.354871, 0.15, 1, -0.765996, 0, 0, 0.642845, 0.35, 1, 0.229803, 0, 0, 0.973237, 0.65, 1, 0.229803, 0, 0, 0.973237)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_do_sound"
+}, {
+"args": [SubResource("Resource_xtvl4")],
 "method": &"activate_melee_hitbox"
 }, {
 "args": [],
@@ -398,6 +446,7 @@ _data = {
 "idle": SubResource("Animation_ybb6b"),
 "shield_break": SubResource("Animation_hvjom"),
 "special": SubResource("Animation_73w8r"),
+"special_2": SubResource("Animation_xw0sq"),
 "swing": SubResource("Animation_o7evh"),
 "swing2": SubResource("Animation_4ads4"),
 "swing3": SubResource("Animation_o31xy")
@@ -464,6 +513,7 @@ texture_filter = 0
 texture = ExtResource("6_47ovb")
 
 [node name="MeleeHitbox" type="Area3D" parent="Hand" index="1"]
+collision_layer = 3
 collision_mask = 2
 script = ExtResource("5_6nk30")
 

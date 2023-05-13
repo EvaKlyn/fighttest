@@ -1,9 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://buonceewup0bb"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://buonceewup0bb"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xt5so"]
-load_path = "res://.godot/imported/brownstone.png-e8f0b4bcdcc6742b0cf316d8c908ba2c.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://nrrfbppw0ak7" path="res://textures/upgrade/Rock037_1K_Color.png" id="1_m8t2d"]
+[ext_resource type="Texture2D" uid="uid://bhn1gxl7lqd8j" path="res://textures/upgrade/Rock037_1K_AmbientOcclusion.png" id="2_ev514"]
 
 [resource]
-albedo_texture = SubResource("CompressedTexture2D_xt5so")
+shading_mode = 2
+albedo_texture = ExtResource("1_m8t2d")
+ao_enabled = true
+ao_texture = ExtResource("2_ev514")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
-texture_filter = 0

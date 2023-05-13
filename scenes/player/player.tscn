@@ -4,19 +4,18 @@
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_8r0nc"]
 [ext_resource type="Environment" uid="uid://b3cn01u84faiy" path="res://addons/character-controller/example/main/underwater.tres" id="3_dxksd"]
 [ext_resource type="PackedScene" uid="uid://b1oagcoh1u8bb" path="res://addons/character-controller/example/main/audios/player_audios.tscn" id="4_ux8kv"]
-[ext_resource type="Shader" path="res://resources/mat/shield.gdshader" id="5_twrjt"]
+[ext_resource type="Material" uid="uid://dxtqvhp4d23xx" path="res://resources/mat/shield.tres" id="5_wffyh"]
 [ext_resource type="AudioStream" uid="uid://bgdeqr1enc6l1" path="res://assets/sound/hitHurt.wav" id="6_tbng5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2s8c"]
-render_priority = 0
-shader = ExtResource("5_twrjt")
-shader_parameter/barrier_color = Color(0.239216, 0.482353, 1, 1)
-shader_parameter/barrier_force = 10.0
-shader_parameter/barrier_interval = 40.0
-shader_parameter/barrier_speed = 12.0
-
 [sub_resource type="SphereMesh" id="SphereMesh_dh2kb"]
-material = SubResource("ShaderMaterial_r2s8c")
+material = ExtResource("5_wffyh")
+radius = 1.2
+height = 2.4
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_atldv"]
+material = ExtResource("5_wffyh")
 flip_faces = true
 radius = 1.2
 height = 2.4
@@ -92,6 +91,9 @@ abilities_path = Array[NodePath]([NodePath("Crouch Ability 3D"), NodePath("Sprin
 acceleration = 1
 air_control = 1.0
 
+[node name="Jump Ability 3D" parent="." index="6"]
+height = 7.8
+
 [node name="DodgeAbility3D" parent="." index="10"]
 dodge_strength = 10.0
 dodge_cooldown = 0.5
@@ -114,6 +116,10 @@ outline_size = 17
 [node name="ShieldMesh" type="MeshInstance3D" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203795, 0)
 mesh = SubResource("SphereMesh_dh2kb")
+
+[node name="ShieldMesh2" type="MeshInstance3D" parent="ShieldMesh" index="0"]
+mesh = SubResource("SphereMesh_atldv")
+skeleton = NodePath("../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="14"]
 replication_config = SubResource("SceneReplicationConfig_803co")

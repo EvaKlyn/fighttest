@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxtqvhp4d23xx"]
+
+[ext_resource type="Shader" path="res://resources/mat/shield.gdshader" id="1_8y2l0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8y2l0")
+shader_parameter/barrier_color = Color(0.188235, 0.443137, 1, 1)
+shader_parameter/barrier_force = 20.0
+shader_parameter/barrier_interval = 26.08
+shader_parameter/barrier_speed = 5.0
