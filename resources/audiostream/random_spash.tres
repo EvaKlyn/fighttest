@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://ctn0lkskqybvs"]
+
+[ext_resource type="AudioStream" uid="uid://bco0bgmf1po2q" path="res://assets/sound/water_step 1.wav" id="1_i17w3"]
+[ext_resource type="AudioStream" uid="uid://q8uaj4u38wi5" path="res://assets/sound/water_step 2.wav" id="2_balgl"]
+
+[resource]
+streams_count = 2
+playback_mode = 1
+random_pitch = 1.28
+random_volume_offset_db = 0.8
+stream_0/stream = ExtResource("1_i17w3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_balgl")
+stream_1/weight = 1.0

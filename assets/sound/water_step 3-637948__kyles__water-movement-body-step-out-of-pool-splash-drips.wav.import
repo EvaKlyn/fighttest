@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://clcc5o5t0lycp"
+path="res://.godot/imported/water_step 3-637948__kyles__water-movement-body-step-out-of-pool-splash-drips.wav-f7c3de663243fd991f47b8fa6066bc1a.sample"
+
+[deps]
+
+source_file="res://assets/sound/water_step 3-637948__kyles__water-movement-body-step-out-of-pool-splash-drips.wav"
+dest_files=["res://.godot/imported/water_step 3-637948__kyles__water-movement-body-step-out-of-pool-splash-drips.wav-f7c3de663243fd991f47b8fa6066bc1a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

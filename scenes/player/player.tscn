@@ -233,7 +233,9 @@ text = "special 1"
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special1" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
+show_percentage = false
 
 [node name="Special2" type="HBoxContainer" parent="CanvasLayer/Hud/VBoxContainer" index="1"]
 layout_mode = 2
@@ -246,7 +248,9 @@ text = "special 2"
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special2" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
+show_percentage = false
 
 [node name="Special3" type="HBoxContainer" parent="CanvasLayer/Hud/VBoxContainer" index="2"]
 layout_mode = 2
@@ -259,7 +263,9 @@ text = "special 3"
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special3" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
+show_percentage = false
 
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466824, 0)

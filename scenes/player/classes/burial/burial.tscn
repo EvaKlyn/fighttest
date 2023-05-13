@@ -54,13 +54,13 @@ top_level = true
 _spawnable_scenes = PackedStringArray("res://scenes/player/classes/burial/projectile_dagger.tscn")
 spawn_path = NodePath("../ProjectileWorld")
 
-[node name="Jump Ability 3D" parent="." index="10"]
+[node name="Jump Ability 3D" parent="." index="11"]
 height = 5.0
 
-[node name="Head" parent="." index="13"]
+[node name="Head" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.959024, 0)
 
-[node name="DodgeAbility3D" parent="." index="14"]
+[node name="DodgeAbility3D" parent="." index="15"]
 dodge_strength = 7.0
 
 [node name="RisingAbility3D" type="Node3D" parent="." index="16"]
@@ -82,9 +82,6 @@ transform = Transform3D(-1.42857, 0, -3.40711e-08, 0, 1.42857, 0, 3.40711e-08, 0
 transform = Transform3D(0.101881, -0.252199, 1.1024e-08, 0, -1.18895e-08, -0.272, 0.252199, 0.101881, -4.45337e-09, 0.195674, 0.905133, 0.342161)
 mesh = ExtResource("6_ije4s")
 skeleton = NodePath("")
-
-[node name="ShieldMesh" parent="." index="18"]
-visible = false
 
 [node name="VBoxContainer" parent="CanvasLayer/Hud" index="3"]
 offset_top = -89.0

@@ -10,7 +10,7 @@ hipass = 0.55
 wet = 0.19
 
 [resource]
-bus/0/volume_db = -5.625
+bus/0/volume_db = -16.3935
 bus/1/name = &"RvOpen"
 bus/1/solo = false
 bus/1/mute = false

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bco0bgmf1po2q"
+path="res://.godot/imported/water_step 1.wav-f7dda5473e2f0cbe0efa9d8f7c23c828.sample"
+
+[deps]
+
+source_file="res://assets/sound/water_step 1.wav"
+dest_files=["res://.godot/imported/water_step 1.wav-f7dda5473e2f0cbe0efa9d8f7c23c828.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

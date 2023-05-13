@@ -105,7 +105,6 @@ func _physics_process(delta):
 		super(delta)
 		
 		if current_weapon.attack_just_ended: 
-			print("woo")
 			head.body_lock()
 			current_weapon.attack_just_ended = false
 		
