@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmfihgpwa3km"]
+[gd_scene load_steps=10 format=3 uid="uid://lofeqwk2nbcw"]
 
-[ext_resource type="PackedScene" uid="uid://dlybjknss6baj" path="res://scenes/player/player.tscn" id="1_gmh56"]
-[ext_resource type="PackedScene" uid="uid://dohd08viqgmk3" path="res://scenes/weapons/longsword.tscn" id="2_7nb22"]
-[ext_resource type="Script" path="res://scenes/player/classes/burial.gd" id="2_icigi"]
-[ext_resource type="Script" path="res://scenes/player/rising_ability.gd" id="4_j6lyd"]
-[ext_resource type="ArrayMesh" uid="uid://4hqy0y12xc72" path="res://resources/mesh/burial_body.tres" id="4_ojb3f"]
-[ext_resource type="ArrayMesh" uid="uid://dkyi4u6o6hfy5" path="res://resources/mesh/burial_head.tres" id="5_c67ym"]
+[ext_resource type="PackedScene" uid="uid://dlybjknss6baj" path="res://scenes/player/player.tscn" id="1_rkhh7"]
+[ext_resource type="Script" path="res://scenes/player/classes/burial/burial.gd" id="2_y5dtn"]
+[ext_resource type="PackedScene" uid="uid://dohd08viqgmk3" path="res://scenes/weapons/longsword.tscn" id="3_7wwa8"]
+[ext_resource type="Script" path="res://scenes/player/rising_ability.gd" id="4_skeql"]
+[ext_resource type="ArrayMesh" uid="uid://4hqy0y12xc72" path="res://resources/mesh/burial_body.tres" id="5_tr7mi"]
+[ext_resource type="ArrayMesh" uid="uid://dkyi4u6o6hfy5" path="res://resources/mesh/burial_head.tres" id="6_ije4s"]
 
 [sub_resource type="Animation" id="Animation_sw0te"]
 length = 0.001
@@ -28,8 +28,8 @@ _data = {
 "dodge": SubResource("Animation_hvpxw")
 }
 
-[node name="Burial" node_paths=PackedStringArray("current_weapon", "body_animations", "head_mesh") instance=ExtResource("1_gmh56")]
-script = ExtResource("2_icigi")
+[node name="Burial" node_paths=PackedStringArray("current_weapon", "body_animations", "head_mesh") instance=ExtResource("1_rkhh7")]
+script = ExtResource("2_y5dtn")
 current_weapon = NodePath("Longsword")
 body_animations = NodePath("AnimationPlayer")
 head_mesh = NodePath("Vis/CharacterModel/Cube/Node3D")
@@ -43,19 +43,26 @@ libraries = {
 "": SubResource("AnimationLibrary_i4q6j")
 }
 
-[node name="Longsword" parent="." index="1" instance=ExtResource("2_7nb22")]
+[node name="ProjectileWorld" type="Node3D" parent="." index="1"]
+top_level = true
 
-[node name="Jump Ability 3D" parent="." index="8"]
+[node name="Longsword" parent="." index="2" instance=ExtResource("3_7wwa8")]
+
+[node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." index="3"]
+_spawnable_scenes = PackedStringArray("res://scenes/player/classes/burial/projectile_dagger.tscn")
+spawn_path = NodePath("../ProjectileWorld")
+
+[node name="Jump Ability 3D" parent="." index="10"]
 height = 5.0
 
-[node name="Head" parent="." index="11"]
+[node name="Head" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.959024, 0)
 
-[node name="DodgeAbility3D" parent="." index="12"]
+[node name="DodgeAbility3D" parent="." index="14"]
 dodge_strength = 7.0
 
-[node name="RisingAbility3D" type="Node3D" parent="." index="14"]
-script = ExtResource("4_j6lyd")
+[node name="RisingAbility3D" type="Node3D" parent="." index="16"]
+script = ExtResource("4_skeql")
 
 [node name="LookDummy" type="Node3D" parent="Vis" index="0"]
 
@@ -63,7 +70,7 @@ script = ExtResource("4_j6lyd")
 
 [node name="Cube" type="MeshInstance3D" parent="Vis/CharacterModel" index="0"]
 transform = Transform3D(-0.7, 0, -6.11959e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 0, 0.0501662, 0.0131173)
-mesh = ExtResource("4_ojb3f")
+mesh = ExtResource("5_tr7mi")
 skeleton = NodePath("")
 
 [node name="Node3D" type="Node3D" parent="Vis/CharacterModel/Cube" index="0"]
@@ -71,5 +78,8 @@ transform = Transform3D(-1.42857, 0, -3.40711e-08, 0, 1.42857, 0, 3.40711e-08, 0
 
 [node name="Plane001" type="MeshInstance3D" parent="Vis/CharacterModel/Cube/Node3D" index="0"]
 transform = Transform3D(0.101881, -0.252199, 1.1024e-08, 0, -1.18895e-08, -0.272, 0.252199, 0.101881, -4.45337e-09, 0.195674, 0.905133, 0.342161)
-mesh = ExtResource("5_c67ym")
+mesh = ExtResource("6_ije4s")
 skeleton = NodePath("")
+
+[node name="ShieldMesh" parent="." index="18"]
+visible = false

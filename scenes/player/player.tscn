@@ -58,6 +58,7 @@ properties/10/spawn = true
 properties/10/sync = true
 
 [node name="Player" node_paths=PackedStringArray("current_weapon") instance=ExtResource("1_fbpun")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("2_8r0nc")
 player_alias = "WHOOPS"

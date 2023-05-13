@@ -67,6 +67,9 @@ func special(attack_state, index: int) -> void:
 				weapon_anims.clear_queue()
 				weapon_anims.play("special_2")
 				character.rising_ability.set_active(true)
+		if index == 3:
+			weapon_anims.clear_queue()
+			weapon_anims.play("special_3")
 	
 	super(attack_state, index)
 	weapon_anims.queue("idle")

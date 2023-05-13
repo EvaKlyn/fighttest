@@ -11,3 +11,4 @@ ao_light_affect = 0.37
 ao_texture = ExtResource("2_i483f")
 ao_texture_channel = 4
 uv1_scale = Vector3(0.2, 0.2, 0.2)
+texture_filter = 2

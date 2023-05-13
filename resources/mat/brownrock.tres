@@ -9,3 +9,4 @@ albedo_texture = ExtResource("1_m8t2d")
 ao_enabled = true
 ao_texture = ExtResource("2_ev514")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
+texture_filter = 2

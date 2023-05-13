@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://qbt2luo5sxbw"]
+
+[ext_resource type="Script" path="res://scenes/player/classes/burial/projectile_dagger.gd" id="1_a3jsr"]
+[ext_resource type="Script" path="res://resources/customtypes/attack_properties.gd" id="2_eli10"]
+[ext_resource type="PackedScene" uid="uid://cp67euunkrosk" path="res://assets/gltf/Sword.glb" id="2_hoc1v"]
+
+[sub_resource type="Resource" id="Resource_e1h52"]
+script = ExtResource("2_eli10")
+damage = 8
+launch_power = 9.0
+stun_time = 0.3
+position_offset = Vector2(0, 0)
+knockup_amount = 0.0
+shattering = false
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m8ydd"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/sync = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_up8ve"]
+size = Vector3(0.248374, 0.233976, 0.826039)
+
+[node name="ProjectileDagger" type="Area3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_mask = 3
+script = ExtResource("1_a3jsr")
+attack_properties = SubResource("Resource_e1h52")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m8ydd")
+
+[node name="Sword" parent="." instance=ExtResource("2_hoc1v")]
+transform = Transform3D(0.05, -6.55671e-09, 4.37114e-09, -4.37114e-09, 9.55343e-17, 0.05, -6.55671e-09, -0.05, -4.77672e-16, 0.487697, 0.00841945, 0.0648326)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0107394, 0.00844419, -0.292709)
+shape = SubResource("BoxShape3D_up8ve")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

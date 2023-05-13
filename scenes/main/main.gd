@@ -53,7 +53,7 @@ func add_level():
 	
 func add_player(id=1):
 	print("spawining player id " + str(id))
-	var character = preload("res://scenes/player/classes/burial.tscn").instantiate()
+	var character = preload("res://scenes/player/classes/burial/burial.tscn").instantiate()
 	character.name = str(id)
 	var tp_position = MpGlobals.spawn_points.pick_random()
 	tp_position += Vector3(randf_range(-3, 3), 0, randf_range(-3, 3))
