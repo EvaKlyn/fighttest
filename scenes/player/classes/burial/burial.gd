@@ -9,17 +9,19 @@ var projectile = preload("res://scenes/player/classes/burial/projectile_dagger.t
 func _ready():
 	projectile_world.position = Vector3.ZERO
 	projectile_world.rotation = Vector3.ZERO
-	
+	special1_label.text = "spin"
+	special2_label.text = "rise"
+	special3_label.text = "dagger"
 	super()
 
 func _physics_process(delta):
 	if is_multiplayer_authority():
 		if not dodge and not hit_stunned and not guarding:
-			if Input.is_action_just_pressed("special_1"):
+			if Input.is_action_just_pressed("special_1") and (special_timer_1 <= 0.0):
 				current_weapon.special(attack_state, 1)
-			if Input.is_action_just_pressed("special_2"):
+			if Input.is_action_just_pressed("special_2") and (special_timer_2 <= 0.0):
 				current_weapon.special(attack_state, 2)
-			if Input.is_action_just_pressed("special_3"):
+			if Input.is_action_just_pressed("special_3") and (special_timer_3 <= 0.0):
 				if not current_weapon.attacking:
 					current_weapon.special(attack_state, 3)
 					shoot_projectile()

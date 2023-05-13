@@ -33,6 +33,15 @@ var taken_attack_ids: Array = []
 @export var max_shield_hp: int = 100
 @export var knockback_multiplier: float = 1.0
 @export var head_mesh: Node3D
+@export_category("cooldowns")
+@export var special_cooldown_1 = 2.0
+@export var special_cooldown_2 = 3.0
+@export var special_cooldown_3 = 3.3
+
+var special_timer_1 = 0.0
+var special_timer_2 = 0.0
+var special_timer_3 = 0.0
+
 @export_group("Input Conifg")
 @export var input_back_action_name := "move_backward"
 @export var input_forward_action_name := "move_forward"
@@ -49,6 +58,13 @@ var taken_attack_ids: Array = []
 @onready var shield_mesh = $ShieldMesh
 @onready var landing_particles = preload("res://scenes/obj/land_particles.tscn")
 @onready var hurt_particles = preload("res://scenes/obj/blood_particles.tscn")
+
+@onready var special1_label: Label = $CanvasLayer/Hud/VBoxContainer/Special1/Label
+@onready var special1_bar = $CanvasLayer/Hud/VBoxContainer/Special1/ProgressBar
+@onready var special2_label: Label = $CanvasLayer/Hud/VBoxContainer/Special2/Label
+@onready var special2_bar = $CanvasLayer/Hud/VBoxContainer/Special2/ProgressBar
+@onready var special3_label: Label = $CanvasLayer/Hud/VBoxContainer/Special3/Label
+@onready var special3_bar = $CanvasLayer/Hud/VBoxContainer/Special3/ProgressBar
 
 var set_up = false
 var last_input_state = {
@@ -70,16 +86,34 @@ func _ready():
 		dodge_ability.dodged.connect(func(): do_animation("dodge"))
 		landed.connect(spawn_landing_particles)
 
+func update_special_bars():
+	special1_bar.value = 1.0 - (special_timer_1 / special_cooldown_1)
+	special2_bar.value = 1.0 - (special_timer_2 / special_cooldown_2)
+	special3_bar.value = 1.0 - (special_timer_3 / special_cooldown_3)
+
 func _physics_process(delta):
 	if not set_up:
 		camera.current = synchronizer.is_multiplayer_authority()
 		if camera.current:
 			$Vis.visible = false
+			$Crosshair3D.visible = true
 		else:
 			$CanvasLayer.visible = false
+			$Crosshair3D.visible = false
 	
 	if is_multiplayer_authority():
 		super(delta)
+		
+		if current_weapon.attack_just_ended: 
+			print("woo")
+			head.body_lock()
+			current_weapon.attack_just_ended = false
+		
+		if special_timer_1 > 0: special_timer_1 -= delta
+		if special_timer_2 > 0: special_timer_2 -= delta
+		if special_timer_3 > 0: special_timer_3 -= delta
+		update_special_bars()
+		
 		var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 		var guarded_last_frame = guarding
 		
@@ -227,6 +261,7 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 			current_weapon.stop_attacks()
 			
 		else:
+			add_hit_stun(properties.stun_time * 0.35)
 			shield_hp -= properties.damage
 			knockback.power = properties.launch_power * 0.25 * knockback_multiplier
 			knockback.knockup = up_amt * 0.25

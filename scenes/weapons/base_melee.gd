@@ -22,10 +22,13 @@ var current_attack_properties: AttackProperties = AttackProperties.new(10, 10.0,
 var attacking: bool = false
 var current_attack_id = uuid.new().as_string()
 var current_attack_type: String = "attack"
+var attack_just_ended = false
 
 func _ready():
 	hitbox.body_entered.connect(func(body): _on_melee_hitbox_body_entered(body))
 	hitbox.area_entered.connect(func(area): _on_melee_hitbox_area_entered(area))
+	weapon_anims.animation_finished.connect(func(animname): attack_just_ended = true)
+	weapon_anims.animation_changed.connect(func(old_name, new_name): attack_just_ended = true)
 
 func _physics_process(_delta):
 	if is_multiplayer_authority():

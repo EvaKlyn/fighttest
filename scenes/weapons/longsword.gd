@@ -56,20 +56,31 @@ func attack(attack_state) -> void:
 	weapon_anims.queue("idle")
 
 func special(attack_state, index: int) -> void:
-	if not (attacking and current_attack_type == "special") or (attack_almost_finished() and current_attack_type != "special"):
+	if not (attacking and current_attack_type == "special"):
 		if index == 1:
+			var character: FighterBurial = get_parent_node_3d()
+			character.head.body_lock()
 			weapon_anims.clear_queue()
 			weapon_anims.play("special")
-			current_attack_type = "special"
+			character.special_timer_1 = character.special_cooldown_1
+			
 		if index == 2:
 			var character: FighterBurial = get_parent_node_3d()
+			character.special_timer_2 = character.special_cooldown_2
+			character.head.body_lock()
 			if character.is_on_floor():
 				weapon_anims.clear_queue()
 				weapon_anims.play("special_2")
 				character.rising_ability.set_active(true)
+				
 		if index == 3:
+			var character: FighterBurial = get_parent_node_3d()
+			character.special_timer_3 = character.special_cooldown_3
+			character.head.body_lock()
 			weapon_anims.clear_queue()
 			weapon_anims.play("special_3")
+			
+		current_attack_type = "special"
 	
 	super(attack_state, index)
 	weapon_anims.queue("idle")

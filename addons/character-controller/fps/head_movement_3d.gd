@@ -31,9 +31,7 @@ func _process(delta):
 ## Vector2 is sent with reference to the input of a mouse as an example
 func rotate_camera(mouse_axis : Vector2) -> void:
 	if not body_locked:
-		get_owner().rotation.y = global_rotation. y
-		global_rotation. y = get_owner().rotation.y
-		body_locked = true
+		body_lock()
 	# Vertical mouse look.
 	actual_rotation.x = clamp(actual_rotation.x - mouse_axis.y * (mouse_sensitivity/1000), -vertical_angle_limit, vertical_angle_limit)
 	get_owner().rotate_y(-1 *mouse_axis.x * (mouse_sensitivity/1000))
@@ -44,6 +42,11 @@ func rotate_only_camera(mouse_axis : Vector2) -> void:
 	rotate_y(-1 * mouse_axis.x * (mouse_sensitivity/1000))
 	rotation.x = actual_rotation.x
 	body_locked = false
+
+func body_lock():
+	get_owner().rotation.y = global_rotation. y
+	global_rotation. y = get_owner().rotation.y
+	body_locked = true
 
 func roll_dip():
 	var tween = create_tween()

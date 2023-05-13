@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlybjknss6baj"]
+[gd_scene load_steps=11 format=3 uid="uid://dlybjknss6baj"]
 
 [ext_resource type="PackedScene" uid="uid://cr4d14eps6xpf" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_fbpun"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_8r0nc"]
 [ext_resource type="Environment" uid="uid://b3cn01u84faiy" path="res://addons/character-controller/example/main/underwater.tres" id="3_dxksd"]
 [ext_resource type="PackedScene" uid="uid://b1oagcoh1u8bb" path="res://addons/character-controller/example/main/audios/player_audios.tscn" id="4_ux8kv"]
 [ext_resource type="Material" uid="uid://dxtqvhp4d23xx" path="res://resources/mat/shield.tres" id="5_wffyh"]
+[ext_resource type="Texture2D" uid="uid://f4ugl2hfa35w" path="res://assets/img/crosshair.png" id="6_12cv5"]
 [ext_resource type="AudioStream" uid="uid://bgdeqr1enc6l1" path="res://assets/sound/hitHurt.wav" id="6_tbng5"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_dh2kb"]
@@ -69,6 +70,9 @@ current_weapon = NodePath("")
 max_hp = 100
 max_shield_hp = 100
 knockback_multiplier = 1.0
+special_cooldown_1 = 2.0
+special_cooldown_2 = 3.0
+special_cooldown_3 = 3.3
 input_back_action_name = "move_backward"
 input_forward_action_name = "move_forward"
 input_left_action_name = "move_left"
@@ -77,6 +81,7 @@ input_sprint_action_name = "move_sprint"
 input_jump_action_name = "move_jump"
 input_crouch_action_name = "move_crouch"
 underwater_env = ExtResource("3_dxksd")
+vertical_horizontal_ratio = 4
 speed = 6
 acceleration = 30
 air_control = 1.0
@@ -86,21 +91,31 @@ step_interval = 4.0
 crouch_speed_multiplier = 0.6
 abilities_path = Array[NodePath]([NodePath("Crouch Ability 3D"), NodePath("Sprint Ability 3D"), NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D"), NodePath("DodgeAbility3D"), NodePath("KnockbackAbility")])
 
-[node name="Player Audios" parent="." index="0" instance=ExtResource("4_ux8kv")]
+[node name="Crosshair3D" type="Sprite3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26692e-07, 0.817843, -1.44919)
+modulate = Color(1, 0.466667, 0.996078, 1)
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("6_12cv5")
 
-[node name="Walk Ability 3D" parent="." index="3"]
+[node name="Player Audios" parent="." index="1" instance=ExtResource("4_ux8kv")]
+
+[node name="Walk Ability 3D" parent="." index="4"]
 acceleration = 1
 air_control = 1.0
 
-[node name="Jump Ability 3D" parent="." index="6"]
+[node name="Jump Ability 3D" parent="." index="7"]
 height = 7.8
 
-[node name="DodgeAbility3D" parent="." index="10"]
+[node name="Head Bob" parent="Head/CameraContainer" index="1"]
+curve_multiplier = Vector2(0.8, 0.8)
+
+[node name="DodgeAbility3D" parent="." index="11"]
 dodge_strength = 10.0
 dodge_cooldown = 0.5
 iframe_duration = 0.4
 
-[node name="Vis" type="Node3D" parent="." index="12"]
+[node name="Vis" type="Node3D" parent="." index="13"]
 
 [node name="Label3D" type="Label3D" parent="Vis" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6079, 0)
@@ -114,25 +129,26 @@ text = "100%"
 font_size = 72
 outline_size = 17
 
-[node name="ShieldMesh" type="MeshInstance3D" parent="." index="13"]
+[node name="ShieldMesh" type="MeshInstance3D" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203795, 0)
+visible = false
 mesh = SubResource("SphereMesh_dh2kb")
 
 [node name="ShieldMesh2" type="MeshInstance3D" parent="ShieldMesh" index="0"]
 mesh = SubResource("SphereMesh_atldv")
 skeleton = NodePath("../..")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="14"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="15"]
 replication_config = SubResource("SceneReplicationConfig_803co")
 visibility_update_mode = 1
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="15"]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="16"]
 _spawnable_scenes = PackedStringArray("res://scenes/obj/land_particles.tscn", "res://scenes/obj/blood_particles.tscn")
 spawn_path = NodePath("../SubWorld")
 
-[node name="SubWorld" type="Node3D" parent="." index="16"]
+[node name="SubWorld" type="Node3D" parent="." index="17"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="17"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="18"]
 
 [node name="Hud" type="Control" parent="CanvasLayer" index="0"]
 layout_mode = 3
@@ -181,6 +197,70 @@ text = "100/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="18"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Hud" index="2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_12cv5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Hud" index="3"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 210.0
+grow_vertical = 0
+alignment = 2
+
+[node name="Special1" type="HBoxContainer" parent="CanvasLayer/Hud/VBoxContainer" index="0"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Hud/VBoxContainer/Special1" index="0"]
+layout_mode = 2
+text = "special 1"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special1" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+
+[node name="Special2" type="HBoxContainer" parent="CanvasLayer/Hud/VBoxContainer" index="1"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Hud/VBoxContainer/Special2" index="0"]
+layout_mode = 2
+text = "special 2"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special2" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+
+[node name="Special3" type="HBoxContainer" parent="CanvasLayer/Hud/VBoxContainer" index="2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Hud/VBoxContainer/Special3" index="0"]
+layout_mode = 2
+text = "special 3"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special3" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466824, 0)
 stream = ExtResource("6_tbng5")

@@ -33,6 +33,8 @@ script = ExtResource("2_y5dtn")
 current_weapon = NodePath("Longsword")
 body_animations = NodePath("AnimationPlayer")
 head_mesh = NodePath("Vis/CharacterModel/Cube/Node3D")
+special_cooldown_2 = 2.7
+special_cooldown_3 = 3.2
 underwater_env = null
 acceleration = 8
 air_control = 0.3
@@ -83,3 +85,19 @@ skeleton = NodePath("")
 
 [node name="ShieldMesh" parent="." index="18"]
 visible = false
+
+[node name="VBoxContainer" parent="CanvasLayer/Hud" index="3"]
+offset_top = -89.0
+offset_right = 217.0
+
+[node name="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special1" index="1"]
+custom_minimum_size = Vector2(128, 0)
+size_flags_horizontal = 1
+
+[node name="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special2" index="1"]
+custom_minimum_size = Vector2(128, 0)
+size_flags_horizontal = 1
+
+[node name="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special3" index="1"]
+custom_minimum_size = Vector2(128, 0)
+size_flags_horizontal = 1
