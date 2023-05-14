@@ -28,7 +28,6 @@ PlayerSettings="*res://resources/globals/player_settings.gd"
 
 window/size/viewport_width=720
 window/size/viewport_height=480
-window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
 [editor_plugins]

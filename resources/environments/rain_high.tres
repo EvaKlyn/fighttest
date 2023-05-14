@@ -2,54 +2,45 @@
 
 [ext_resource type="Texture2D" uid="uid://be8sef30cy1dx" path="res://assets/img/sky.png" id="1_wj53u"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xf4tk"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_e261l"]
 panorama = ExtResource("1_wj53u")
 
 [sub_resource type="Sky" id="Sky_jjvr8"]
-sky_material = SubResource("PanoramaSkyMaterial_xf4tk")
-radiance_size = 0
+sky_material = SubResource("PanoramaSkyMaterial_e261l")
+process_mode = 2
 
 [resource]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 1.48
+background_energy_multiplier = 0.05
 sky = SubResource("Sky_jjvr8")
-ambient_light_source = 3
-ambient_light_color = Color(0.592157, 0.580392, 0.6, 1)
-ambient_light_energy = 1.24
+ambient_light_source = 2
+ambient_light_color = Color(0.337255, 0.517647, 0.768627, 1)
+ambient_light_energy = 0.91
 reflected_light_source = 2
+tonemap_mode = 1
 tonemap_white = 1.11
 ssr_enabled = true
 ssao_enabled = true
 ssao_radius = 1.21
 ssao_intensity = 2.54
 ssao_power = 1.13679
-sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 1.17
-sdfgi_cascades = 3
-sdfgi_min_cell_size = 1.35
-sdfgi_cascade0_distance = 86.4
-sdfgi_max_distance = 691.2
-sdfgi_y_scale = 0
-sdfgi_energy = 1.217
-sdfgi_normal_bias = 1.0
-glow_levels/3 = 0.3
-glow_levels/4 = 3.65
-glow_levels/5 = 0.0
+sdfgi_bounce_feedback = 1.05
+glow_enabled = true
+glow_levels/3 = 0.41
+glow_levels/5 = 0.31
 glow_intensity = 0.61
+glow_strength = 1.21
 glow_mix = 1.0
+glow_bloom = 0.03
 glow_blend_mode = 1
-glow_hdr_scale = 0.05
-glow_hdr_luminance_cap = 89.38
+glow_hdr_threshold = 0.04
+glow_hdr_scale = 0.31
 glow_map_strength = 0.0
-fog_enabled = true
-fog_light_color = Color(0.419608, 0.372549, 0.439216, 1)
-fog_density = 0.0039
 fog_sky_affect = 0.0
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0202
 volumetric_fog_albedo = Color(0.294118, 0.27451, 0.584314, 1)
 volumetric_fog_emission = Color(0.639216, 0.537255, 0.784314, 1)
 volumetric_fog_emission_energy = 0.25
-adjustment_enabled = true
-adjustment_contrast = 1.08
+adjustment_brightness = 1.95
+adjustment_contrast = 0.93

@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://bnin5ogdmqdpq"]
 
 [ext_resource type="Texture2D" uid="uid://b8jsysryo0eaj" path="res://assets/gltf/tree01_summer.png" id="1_hq04d"]
+[ext_resource type="Texture2D" uid="uid://3rnfywpswx4x" path="res://scenes/prop/tree01_summer.png" id="2_2flet"]
 [ext_resource type="Texture2D" uid="uid://cffnxyfx72rgn" path="res://icon.png" id="2_577va"]
-[ext_resource type="Texture2D" uid="uid://kmcjividkopl" path="res://assets/gltf/tree01_fall.png" id="2_rse5f"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ad88u"]
 height = 8.0
@@ -44,7 +44,7 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 2
-albedo_texture = ExtResource("2_rse5f")
+albedo_texture = ExtResource("2_2flet")
 metallic_specular = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xx6dn"]

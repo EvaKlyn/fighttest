@@ -100,22 +100,22 @@ texture = ExtResource("6_12cv5")
 
 [node name="Player Audios" parent="." index="1" instance=ExtResource("4_ux8kv")]
 
-[node name="Walk Ability 3D" parent="." index="4"]
+[node name="Walk Ability 3D" parent="." index="3"]
 acceleration = 1
 air_control = 1.0
 
-[node name="Jump Ability 3D" parent="." index="7"]
+[node name="Jump Ability 3D" parent="." index="6"]
 height = 7.8
 
-[node name="Head Bob" parent="Head/CameraContainer" index="1"]
-curve_multiplier = Vector2(0.8, 0.8)
-
-[node name="DodgeAbility3D" parent="." index="11"]
+[node name="DodgeAbility3D" parent="." index="9"]
 dodge_strength = 10.0
 dodge_cooldown = 0.5
 iframe_duration = 0.4
 
-[node name="Vis" type="Node3D" parent="." index="13"]
+[node name="Head Bob" parent="Head/CameraContainer" index="1"]
+curve_multiplier = Vector2(0.8, 0.8)
+
+[node name="Vis" type="Node3D" parent="." index="12"]
 
 [node name="Label3D" type="Label3D" parent="Vis" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6079, 0)
@@ -129,7 +129,7 @@ text = "100%"
 font_size = 72
 outline_size = 17
 
-[node name="ShieldMesh" type="MeshInstance3D" parent="." index="14"]
+[node name="ShieldMesh" type="MeshInstance3D" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203795, 0)
 visible = false
 mesh = SubResource("SphereMesh_dh2kb")
@@ -138,17 +138,17 @@ mesh = SubResource("SphereMesh_dh2kb")
 mesh = SubResource("SphereMesh_atldv")
 skeleton = NodePath("../..")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="15"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="14"]
 replication_config = SubResource("SceneReplicationConfig_803co")
 visibility_update_mode = 1
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="16"]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="15"]
 _spawnable_scenes = PackedStringArray("res://scenes/obj/land_particles.tscn", "res://scenes/obj/blood_particles.tscn", "res://scenes/obj/blood_splat.tscn")
 spawn_path = NodePath("../SubWorld")
 
-[node name="SubWorld" type="Node3D" parent="." index="17"]
+[node name="SubWorld" type="Node3D" parent="." index="16"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="18"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="17"]
 
 [node name="Hud" type="Control" parent="CanvasLayer" index="0"]
 layout_mode = 3
@@ -267,9 +267,9 @@ size_flags_vertical = 1
 max_value = 1.0
 show_percentage = false
 
-[node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="19"]
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="18"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466824, 0)
 stream = ExtResource("6_tbng5")
 
-[node name="RayCast3D" type="RayCast3D" parent="." index="20"]
+[node name="RayCast3D" type="RayCast3D" parent="." index="19"]
 target_position = Vector3(0, 0, 3)

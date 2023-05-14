@@ -191,7 +191,7 @@ func _input(event: InputEvent) -> void:
 			else:
 				rotate_only_head(event.relative)
 			var temp_rotation = head.rotation
-			temp_rotation.y = temp_rotation.y + deg_to_rad(180)
+			temp_rotation.y = temp_rotation.y
 			head_rotation = temp_rotation
 
 func reduce_health(damage: int):

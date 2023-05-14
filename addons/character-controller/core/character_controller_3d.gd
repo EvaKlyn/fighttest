@@ -67,6 +67,7 @@ signal stopped_floating
 
 
 @export_group("Movement")
+@export var collision: CollisionShape3D
 
 ## Controller Gravity Multiplier
 ## The higher the number, the faster the controller will fall to the ground and 
@@ -169,9 +170,6 @@ var _direction_base_node : Node3D
 
 ## Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
-
-## Collision of character controller.
-@onready var collision: CollisionShape3D = get_node(NodePath("Collision"))
 
 ## Above head collision checker, used for crouching and jumping.
 @onready var head_check: RayCast3D = get_node(NodePath("Head Check"))

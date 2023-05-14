@@ -665,7 +665,7 @@ libraries = {
 transform = Transform3D(0.999999, 0, 0, 0, 0.866024, 0.5, 0, -0.5, 0.866024, 0.2552, 0, -0.65)
 
 [node name="hand2" parent="WeaponModel" index="0" instance=ExtResource("6_jnld6")]
-transform = Transform3D(0.519, 0, 0, 0, 0.449467, -0.2595, 0, 0.2595, 0.449467, 0.10122, 0.0468902, 0.0852593)
+transform = Transform3D(0.337, 0, 0, 0, 0.291851, -0.1685, 0, 0.1685, 0.291851, 0.10122, 0.0468902, 0.0852593)
 
 [node name="Shovel" type="Node3D" parent="WeaponModel" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
@@ -698,7 +698,7 @@ shape = SubResource("BoxShape3D_2vhf0")
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0.0995815, -0.109236, -0.588314)
 
 [node name="hand" parent="Hand" index="0" instance=ExtResource("6_jnld6")]
-transform = Transform3D(0.519, 0, 0, 0, 0.519, 0, 0, 0, 0.519, 0.00958532, 0.0202852, 0.00735129)
+transform = Transform3D(0.337, 0, 0, 0, 0.337, 0, 0, 0, 0.337, 0.00958532, 0.0202852, 0.00735129)
 
 [node name="MeleeHitbox" type="Area3D" parent="Hand" index="1"]
 collision_layer = 3

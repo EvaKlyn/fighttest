@@ -9,16 +9,17 @@ particle_flag_rotate_y = true
 direction = Vector3(0, 10, 0)
 spread = 41.89
 gravity = Vector3(0, -20, 0)
-initial_velocity_max = 6.29
+initial_velocity_min = 2.0
+initial_velocity_max = 8.0
 linear_accel_max = 2.98
-scale_min = 0.75
+scale_min = 2.0
+scale_max = 4.0
 collision_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgxue"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
+transparency = 1
 shading_mode = 2
+albedo_color = Color(0.203922, 0.160784, 0.117647, 1)
 albedo_texture = ExtResource("3_fohgq")
 texture_filter = 0
 
@@ -31,16 +32,16 @@ orientation = 2
 script = ExtResource("1_uxqxa")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 cast_shadow = 0
 emitting = false
-amount = 16
-lifetime = 1.37
+amount = 32
+lifetime = 0.88
 one_shot = true
 explosiveness = 1.0
 collision_base_size = 0.1
 visibility_aabb = AABB(-4, -4, -5, 8, 8, 10)
-transform_align = 3
+transform_align = 1
 trail_lifetime = 1.13
 process_material = SubResource("ParticleProcessMaterial_2g4js")
 draw_pass_1 = SubResource("PlaneMesh_ihlod")
