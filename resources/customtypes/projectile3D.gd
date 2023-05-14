@@ -18,7 +18,7 @@ func _physics_process(delta):
 		behavior(delta)
 		for body in get_overlapping_bodies():
 			if body is Player and not body == creator:
-				if not body.hit_stunned and not body == creator:
+				if not body == creator:
 					var forward_vec = position.direction_to(body.position)
 					var dmg_angle = Vector2(forward_vec.x, forward_vec.z).angle()
 					dmg_angle = dmg_angle + attack_properties.position_offset.angle()

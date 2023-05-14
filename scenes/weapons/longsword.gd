@@ -10,11 +10,10 @@ func _physics_process(delta):
 		if alt_hitbox_active:
 				for body in alt_hitbox.get_overlapping_bodies():
 					if body is Player:
-						if not body.hit_stunned:
-							var forward_vec = get_parent_node_3d().position.direction_to(body.position)
-							var dmg_angle = Vector2(forward_vec.x, forward_vec.z).angle()
-							dmg_angle = dmg_angle + current_attack_properties.position_offset.angle()
-							body.rpc("take_damage", current_attack_id, current_attack_properties.serialize(), dmg_angle, current_attack_properties.knockup_amount)
+						var forward_vec = get_parent_node_3d().position.direction_to(body.position)
+						var dmg_angle = Vector2(forward_vec.x, forward_vec.z).angle()
+						dmg_angle = dmg_angle + current_attack_properties.position_offset.angle()
+						body.rpc("take_damage", current_attack_id, current_attack_properties.serialize(), dmg_angle, current_attack_properties.knockup_amount)
 
 func attack(attack_state) -> void:
 	if attack_state == "walk" or attack_state == "idle":
@@ -66,12 +65,12 @@ func special(attack_state, index: int) -> void:
 			
 		if index == 2:
 			var character: FighterBurial = get_parent_node_3d()
-			character.special_timer_2 = character.special_cooldown_2
 			character.head.body_lock()
 			if character.is_on_floor():
 				weapon_anims.clear_queue()
 				weapon_anims.play("special_2")
 				character.rising_ability.set_active(true)
+				character.special_timer_2 = character.special_cooldown_2
 				
 		if index == 3:
 			var character: FighterBurial = get_parent_node_3d()
@@ -79,6 +78,7 @@ func special(attack_state, index: int) -> void:
 			character.head.body_lock()
 			weapon_anims.clear_queue()
 			weapon_anims.play("special_3")
+			character.shoot_projectile()
 			
 		current_attack_type = "special"
 	

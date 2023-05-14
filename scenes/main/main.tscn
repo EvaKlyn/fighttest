@@ -6,7 +6,7 @@
 script = ExtResource("1_66ehm")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/map.tscn", "res://scenes/player/classes/burial/burial.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/player/classes/burial/burial.tscn", "res://scenes/maps/map2.tscn", "res://scenes/maps/map.tscn")
 spawn_path = NodePath("../Networked")
 
 [node name="Networked" type="Node3D" parent="."]

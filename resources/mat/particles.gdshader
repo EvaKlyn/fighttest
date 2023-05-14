@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_draw_opaque,cull_front,diffuse_toon,vertex_lighting,shadows_disabled,ensure_correct_normals;
+render_mode depth_draw_opaque,cull_front,unshaded,shadows_disabled,ensure_correct_normals;
 uniform vec2 scroll_speed = vec2(3.0, 5.0);
 uniform float static_intensity : hint_range(0.0, 1.0, 0.05) = 0.25;
 uniform vec3 color : source_color = vec3(1.0);

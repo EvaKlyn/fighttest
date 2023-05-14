@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://siwsy626vsww"]
+
+[ext_resource type="Texture2D" uid="uid://e8cqo7m1x07o" path="res://assets/img/bloodparticle.png" id="1_6fkv2"]
+
+[node name="BloodSplat" type="Decal"]
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("1_6fkv2")
+emission_energy = 0.0

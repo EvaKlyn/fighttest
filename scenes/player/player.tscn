@@ -143,7 +143,7 @@ replication_config = SubResource("SceneReplicationConfig_803co")
 visibility_update_mode = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="16"]
-_spawnable_scenes = PackedStringArray("res://scenes/obj/land_particles.tscn", "res://scenes/obj/blood_particles.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/obj/land_particles.tscn", "res://scenes/obj/blood_particles.tscn", "res://scenes/obj/blood_splat.tscn")
 spawn_path = NodePath("../SubWorld")
 
 [node name="SubWorld" type="Node3D" parent="." index="17"]
@@ -270,3 +270,6 @@ show_percentage = false
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="." index="19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000466824, 0)
 stream = ExtResource("6_tbng5")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="20"]
+target_position = Vector3(0, 0, 3)

@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://7aydjdfp0rof"]
+
+[ext_resource type="Shader" path="res://resources/mat/psx.gdshader" id="1_7h53v"]
+[ext_resource type="Texture2D" uid="uid://7l08k458sylw" path="res://textures/upgrade/Grass001_1K_Color.png" id="2_ojver"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7h53v")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/uv_scrolling_velocity = Vector2(0, 0)
+shader_parameter/vertex_snapping_offset = 0.8
+shader_parameter/image_texture = ExtResource("2_ojver")

@@ -103,6 +103,8 @@ func _physics_process(delta):
 	
 	if is_multiplayer_authority():
 		super(delta)
+		if position.y < -3.0:
+			die()
 		
 		if current_weapon.attack_just_ended: 
 			head.body_lock()
@@ -194,6 +196,7 @@ func _input(event: InputEvent) -> void:
 
 func reduce_health(damage: int):
 	current_hp -= damage
+	spawn_hurt_particles()
 	if current_hp <= 0:
 		die()
 
@@ -226,8 +229,6 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 	if not is_multiplayer_authority():
 		return
 	if attack_id in taken_attack_ids:
-		return
-	if hit_stunned:
 		return
 	if dodge:
 		return
@@ -268,7 +269,6 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 		return
 	
 	reduce_health(properties.damage)
-	spawn_hurt_particles()
 	current_weapon.stop_attacks()
 	add_hit_stun(properties.stun_time)
 
@@ -276,3 +276,4 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 func play_sound(sound: String):
 	if sound == "hurt":
 		hurt_sound.play()
+

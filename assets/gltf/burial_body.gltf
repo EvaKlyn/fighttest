@@ -79,7 +79,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":52,
+			"count":67,
 			"max":[
 				0.4827423095703125,
 				0.8686455488204956,
@@ -95,13 +95,13 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":52,
+			"count":67,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":52,
+			"count":67,
 			"type":"VEC3"
 		},
 		{
@@ -114,26 +114,26 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":624,
+			"byteLength":804,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":416,
-			"byteOffset":624,
+			"byteLength":536,
+			"byteOffset":804,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":624,
-			"byteOffset":1040,
+			"byteLength":804,
+			"byteOffset":1340,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":216,
-			"byteOffset":1664,
+			"byteOffset":2144,
 			"target":34963
 		}
 	],
@@ -145,7 +145,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":1880,
+			"byteLength":2360,
 			"uri":"burial_body.bin"
 		}
 	]

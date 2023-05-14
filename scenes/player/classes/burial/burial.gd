@@ -22,9 +22,8 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("special_2") and (special_timer_2 <= 0.0):
 				current_weapon.special(attack_state, 2)
 			if Input.is_action_just_pressed("special_3") and (special_timer_3 <= 0.0):
-				if not current_weapon.attacking:
-					current_weapon.special(attack_state, 3)
-					shoot_projectile()
+				current_weapon.special(attack_state, 3)
+				
 	
 	super(delta)
 

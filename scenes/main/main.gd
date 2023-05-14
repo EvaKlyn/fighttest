@@ -48,7 +48,7 @@ func _on_host_button_pressed():
 		add_player()
 
 func add_level():
-	var level = preload("res://scenes/map.tscn").instantiate()
+	var level = preload("res://scenes/maps/map2.tscn").instantiate()
 	$Networked.add_child(level)
 	
 func add_player(id=1):

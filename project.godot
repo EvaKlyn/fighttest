@@ -33,7 +33,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg", "res://addons/goshapes/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg", "res://addons/goshapes/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/tbloader/plugin.cfg")
 
 [importer_defaults]
 
@@ -132,6 +132,4 @@ special_3={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-lights_and_shadows/directional_shadow/size=512
-lights_and_shadows/directional_shadow/size.mobile=512
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0

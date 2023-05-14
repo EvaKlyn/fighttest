@@ -282,7 +282,7 @@ func move(_delta: float, input_axis := Vector2.ZERO, input_jump := false, input_
 	if is_on_floor():
 		wall_bounced = false
 	
-	if not is_on_floor() and is_on_wall() and not wall_bounced:
+	if hit_stunned and not is_on_floor() and is_on_wall() and not wall_bounced:
 		var vel_2d = Vector2(velocity.x, velocity.y)
 		var bounced_velocity = Vector3(vel_2d.x, 0, vel_2d.y).bounce(get_wall_normal())
 		velocity.x = bounced_velocity.x * 1.5
