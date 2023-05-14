@@ -1,0 +1,51 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/upgrade"
+// brush 0
+{
+( -1344 32 368 ) ( -1344 0 368 ) ( -1344 0 -32 ) upgrade/rock_cliff_2 0 0 0 2 2
+( -1344 0 368 ) ( 0 0 368 ) ( 0 0 -32 ) upgrade/rock_cliff_2 0 0 0 2 2
+( 0 0 -32 ) ( 0 32 -32 ) ( -1344 32 -32 ) upgrade/rock_cliff_2 0 0 0 2 2
+( -1344 32 368 ) ( 0 32 368 ) ( 0 0 368 ) upgrade/rock_cliff_2 0 0 0 2 2
+( 0 32 -32 ) ( 0 32 368 ) ( -1344 32 368 ) upgrade/rock_cliff_2 0 0 0 2 2
+( 0 0 368 ) ( 0 32 368 ) ( 0 32 -32 ) upgrade/rock_cliff_2 0 0 0 2 2
+}
+// brush 1
+{
+( -32 1376 -32 ) ( -32 1376 368 ) ( -32 32 368 ) upgrade/rock_cliff_2 32 0 0 2 2
+( -32 32 368 ) ( 0 32 368 ) ( 0 32 -32 ) upgrade/rock_cliff_2 0 0 180 2 2
+( 0 1376 -32 ) ( -32 1376 -32 ) ( -32 32 -32 ) upgrade/rock_cliff_2 32 0 90 2 2
+( -32 32 368 ) ( -32 1376 368 ) ( 0 1376 368 ) upgrade/rock_cliff_2 32 0 90 2 2
+( 0 1376 368 ) ( -32 1376 368 ) ( -32 1376 -32 ) upgrade/rock_cliff_2 0 0 180 2 2
+( 0 32 368 ) ( 0 1376 368 ) ( 0 1376 -32 ) upgrade/rock_cliff_2 32 0 0 2 2
+}
+// brush 2
+{
+( -1376 1376 368 ) ( -1376 1344 368 ) ( -1376 1344 -32 ) upgrade/rock_cliff_2 -64 0 0 2 2
+( -1376 1344 368 ) ( -32 1344 368 ) ( -32 1344 -32 ) upgrade/rock_cliff_2 32 0 0 2 2
+( -32 1344 -32 ) ( -32 1376 -32 ) ( -1376 1376 -32 ) upgrade/rock_cliff_2 32 0 0 2 2
+( -1376 1376 368 ) ( -32 1376 368 ) ( -32 1344 368 ) upgrade/rock_cliff_2 32 0 0 2 2
+( -32 1376 -32 ) ( -32 1376 368 ) ( -1376 1376 368 ) upgrade/rock_cliff_2 32 0 0 2 2
+( -32 1344 368 ) ( -32 1376 368 ) ( -32 1376 -32 ) upgrade/rock_cliff_2 -64 0 0 2 2
+}
+// brush 3
+{
+( -1376 1344 -32 ) ( -1376 1344 368 ) ( -1376 0 368 ) upgrade/rock_cliff_2 64 0 0 2 2
+( -1376 0 368 ) ( -1344 0 368 ) ( -1344 0 -32 ) upgrade/rock_cliff_2 -64 0 180 2 2
+( -1344 1344 -32 ) ( -1376 1344 -32 ) ( -1376 0 -32 ) upgrade/rock_cliff_2 64 0 90 2 2
+( -1376 0 368 ) ( -1376 1344 368 ) ( -1344 1344 368 ) upgrade/rock_cliff_2 64 0 90 2 2
+( -1344 1344 368 ) ( -1376 1344 368 ) ( -1376 1344 -32 ) upgrade/rock_cliff_2 -64 0 180 2 2
+( -1344 0 368 ) ( -1344 1344 368 ) ( -1344 1344 -32 ) upgrade/rock_cliff_2 64 0 0 2 2
+}
+}
+// entity 1
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "floor"
+"_tb_id" "1"
+"_tb_layer_sort_index" "0"
+}

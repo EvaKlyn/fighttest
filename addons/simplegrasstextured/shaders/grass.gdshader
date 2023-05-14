@@ -26,7 +26,7 @@ render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_sc
 uniform vec3 player_pos = vec3(1000000.0);
 uniform float player_radius = 0.5;
 uniform vec4 albedo : source_color = vec4(1.0);
-uniform sampler2D texture_albedo : source_color,filter_nearest_mipmap,repeat_disable;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_disable;
 uniform float alpha_scissor_threshold = 0.5;
 uniform float metallic : hint_range(0,1) = 0.0;
 uniform float roughness : hint_range(0,1) = 1.0;
@@ -79,7 +79,7 @@ void vertex() {
 
 void fragment() {
 	vec4 albedo_tex = texture(texture_albedo, UV);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	ALBEDO = albedo.rgb + albedo_tex.rgb;
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;

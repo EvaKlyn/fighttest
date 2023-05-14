@@ -1,21 +1,22 @@
 [gd_resource type="Environment" load_steps=4 format=3 uid="uid://b5hiab75n3r81"]
 
-[ext_resource type="Texture2D" uid="uid://f4tbk8uu5eyf" path="res://textures/upgrade/sky2.exr" id="1_vdtxx"]
+[ext_resource type="Texture2D" uid="uid://be8sef30cy1dx" path="res://assets/img/sky.png" id="1_wj53u"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6ifkx"]
-panorama = ExtResource("1_vdtxx")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xf4tk"]
+panorama = ExtResource("1_wj53u")
 
-[sub_resource type="Sky" id="Sky_2mfsj"]
-sky_material = SubResource("PanoramaSkyMaterial_6ifkx")
+[sub_resource type="Sky" id="Sky_jjvr8"]
+sky_material = SubResource("PanoramaSkyMaterial_xf4tk")
+radiance_size = 0
 
 [resource]
 background_mode = 2
-background_color = Color(0.392157, 0.396078, 0.607843, 1)
-background_energy_multiplier = 0.67
-sky = SubResource("Sky_2mfsj")
-ambient_light_source = 2
-ambient_light_color = Color(0.486275, 0.639216, 0.501961, 1)
-ambient_light_energy = 0.36
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 1.48
+sky = SubResource("Sky_jjvr8")
+ambient_light_source = 3
+ambient_light_color = Color(0.592157, 0.580392, 0.6, 1)
+ambient_light_energy = 1.24
 reflected_light_source = 2
 tonemap_white = 1.11
 ssr_enabled = true
@@ -32,26 +33,23 @@ sdfgi_max_distance = 691.2
 sdfgi_y_scale = 0
 sdfgi_energy = 1.217
 sdfgi_normal_bias = 1.0
-glow_enabled = true
-glow_levels/2 = 0.5
-glow_levels/3 = 0.4
-glow_levels/4 = 0.3
-glow_levels/5 = 0.11
-glow_intensity = 0.65
-glow_strength = 1.21
+glow_levels/3 = 0.3
+glow_levels/4 = 3.65
+glow_levels/5 = 0.0
+glow_intensity = 0.61
 glow_mix = 1.0
-glow_bloom = 0.08
-glow_blend_mode = 0
-glow_hdr_threshold = 0.81
-glow_hdr_scale = 0.07
-glow_hdr_luminance_cap = 1.0
+glow_blend_mode = 1
+glow_hdr_scale = 0.05
+glow_hdr_luminance_cap = 89.38
 glow_map_strength = 0.0
 fog_enabled = true
-fog_light_color = Color(0.2, 0.345098, 0.407843, 1)
-fog_light_energy = 1.48
-fog_density = 0.0456
-fog_sky_affect = 0.744
-volumetric_fog_albedo = Color(0.368627, 0.576471, 0.670588, 1)
-volumetric_fog_emission = Color(0.243137, 0.301961, 0.298039, 1)
+fog_light_color = Color(0.419608, 0.372549, 0.439216, 1)
+fog_density = 0.0039
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0202
+volumetric_fog_albedo = Color(0.294118, 0.27451, 0.584314, 1)
+volumetric_fog_emission = Color(0.639216, 0.537255, 0.784314, 1)
+volumetric_fog_emission_energy = 0.25
 adjustment_enabled = true
 adjustment_contrast = 1.08

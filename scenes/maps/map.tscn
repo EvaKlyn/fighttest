@@ -409,13 +409,13 @@ turbulence_noise_scale = 1.39
 turbulence_influence_min = 0.06
 collision_mode = 2
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_jiuhm"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_8itct"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.129412)
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_lvjkf"]
-material = SubResource("ORMMaterial3D_jiuhm")
+material = SubResource("ORMMaterial3D_8itct")
 radius = 0.25
 height = 0.5
 radial_segments = 6
