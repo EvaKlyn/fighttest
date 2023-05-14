@@ -118,12 +118,12 @@ curve_multiplier = Vector2(0.8, 0.8)
 [node name="Vis" type="Node3D" parent="." index="12"]
 
 [node name="Label3D" type="Label3D" parent="Vis" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6079, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79633, 0)
 billboard = 1
 text = "Name"
 
 [node name="HealthLabel" type="Label3D" parent="Vis" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86328, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05171, 0)
 billboard = 1
 text = "100%"
 font_size = 72
