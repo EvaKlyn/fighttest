@@ -6,7 +6,7 @@
 script = ExtResource("1_66ehm")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/player/classes/burial/burial.tscn", "res://scenes/maps/map2.tscn", "res://scenes/maps/map.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/player/classes/burial/burial.tscn", "res://scenes/player/classes/maestro/maestro.tscn", "res://scenes/maps/map2.tscn", "res://scenes/maps/map.tscn")
 spawn_path = NodePath("../Networked")
 
 [node name="Networked" type="Node3D" parent="."]
@@ -36,6 +36,27 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fighter:"
+
+[node name="OptionButton" type="OptionButton" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "burial"
+popup/item_0/id = 0
+popup/item_1/text = "maestro"
+popup/item_1/id = 1
+
+[node name="Control" type="Control" parent="Control/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 17.618)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connection options:"
 
 [node name="AliasEdit" type="LineEdit" parent="Control/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -68,14 +89,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Host"
 
-[node name="Label" type="Label" parent="Control/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "vv Settings vv"
-
-[node name="LowGraphicsCheck" type="CheckBox" parent="Control/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "low graphics mode"
-
+[connection signal="item_selected" from="Control/PanelContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/HBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="toggled" from="Control/PanelContainer/VBoxContainer/LowGraphicsCheck" to="." method="_on_low_graphics_check_toggled"]

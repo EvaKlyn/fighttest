@@ -80,6 +80,7 @@ func _enter_tree():
 func _ready():
 	if is_multiplayer_authority():
 		shield_hp = max_shield_hp
+		current_hp = max_hp
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		setup()
 		player_alias = MpGlobals.my_alias
@@ -122,7 +123,7 @@ func _physics_process(delta):
 			guard_ended = false
 		
 		$Vis/Label3D.text = MpGlobals.my_alias
-		$CanvasLayer/Hud/HpLabel.text = str((float(current_hp) / float(max_hp)) * 100) + "%"
+		$CanvasLayer/Hud/HpLabel.text = str(int((float(current_hp) / float(max_hp)) * 100)) + "%"
 		$CanvasLayer/Hud/TrueHpLabel.text = str(current_hp) + "/" + str(max_hp)
 		if body_animations.is_playing():
 			current_animation_time = body_animations.current_animation_position
@@ -178,7 +179,7 @@ func _physics_process(delta):
 		else:
 			move(delta, Vector2.ZERO, last_input_state.jmp, last_input_state.crc, last_input_state.spr)
 	else:
-		$Vis/HealthLabel.text = str((float(current_hp) / float(max_hp)) * 100) + "%"
+		$Vis/HealthLabel.text =  str(int((float(current_hp) / float(max_hp)) * 100)) + "%"
 		body_animations.seek(current_animation_time)
 		head_mesh.rotation = head_rotation
 
