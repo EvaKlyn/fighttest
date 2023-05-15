@@ -2,10 +2,15 @@ shader_type spatial;
 
 const float SMOOTHSTEP_AA = 0.01;
 uniform sampler2D surface_texture: source_color, filter_linear_mipmap;
+uniform sampler2D caustic_texture: source_color, filter_linear_mipmap;
+uniform float scale = 60.0;
+uniform vec2 scroll = vec2(0.25, 0.25);
+uniform vec2 scroll2 = vec2(0.25, 0.25);
 uniform sampler2D surfaceNoise;
 uniform sampler2D distortNoise;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform float beer_factor = 0.8;
+
 
 uniform float foam_distance = 0.01;
 uniform float foam_max_distance = 0.4;
@@ -88,8 +93,9 @@ void fragment(){
 	vec4 surfaceNoiseColor = foam_color;
     surfaceNoiseColor.a *= surfaceNoiseAmount;
 	vec4 color = alphaBlend(surfaceNoiseColor, waterColor);
-	vec3 texture_rgb = (texture(surface_texture, UV * 25.0).rgb * COLOR.rgb);
-	
-    ALBEDO =  texture_rgb.rgb * color.rgb;
+	vec3 texture_rgb = (texture(surface_texture, UV * scale - scroll2 * TIME).rgb * COLOR.rgb);
+	vec3 caustic_rgb = texture(caustic_texture, UV * scale - scroll * TIME).rgb;
+	vec3 temp_rgb = texture_rgb.rgb * color.rgb;
+    ALBEDO = mix(temp_rgb, caustic_rgb, 0.3);
 	ALPHA = color.a;
 }

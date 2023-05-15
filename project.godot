@@ -32,7 +32,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg", "res://addons/goshapes/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/godotsize/plugin.cfg")
 
 [importer_defaults]
 

@@ -61,7 +61,8 @@ vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos
 void fragment() {
 	vec4 wall_tex = triplanar_texture(WallTex, power_normal, triplanar_pos,WallTexScale);
 	vec3 wall = wall_tex.rgb * WallColor.rgb;
-
+	SPECULAR = 0.0;
+	ROUGHNESS = 1.0;
 	vec4 top_tex = triplanar_texture(TopTex, power_normal, triplanar_pos,TopTexScale);
 	vec3 top = top_tex.rgb * TopColor.rgb;
 	

@@ -2,17 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://be8sef30cy1dx" path="res://assets/img/sky.png" id="1_wj53u"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_e261l"]
-panorama = ExtResource("1_wj53u")
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_lp2fw"]
+rayleigh_coefficient = 5.74
+rayleigh_color = Color(0.258824, 0.435294, 0.490196, 1)
+mie_coefficient = 0.018
+mie_eccentricity = 0.98
+mie_color = Color(1, 0.627451, 0.278431, 1)
+turbidity = 47.5
+ground_color = Color(0.329412, 0.419608, 0.580392, 1)
+night_sky = ExtResource("1_wj53u")
 
 [sub_resource type="Sky" id="Sky_jjvr8"]
-sky_material = SubResource("PanoramaSkyMaterial_e261l")
+sky_material = SubResource("PhysicalSkyMaterial_lp2fw")
 process_mode = 2
 
 [resource]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.05
 sky = SubResource("Sky_jjvr8")
 ambient_light_source = 2
 ambient_light_color = Color(0.337255, 0.517647, 0.768627, 1)
@@ -20,21 +26,14 @@ ambient_light_energy = 0.24
 reflected_light_source = 2
 tonemap_mode = 1
 tonemap_white = 1.11
-ssao_radius = 1.21
-ssao_intensity = 2.54
+ssao_radius = 0.64
+ssao_intensity = 3.02
 ssao_power = 1.13679
 sdfgi_bounce_feedback = 1.05
 glow_enabled = true
 glow_levels/3 = 0.41
 glow_levels/5 = 0.31
-glow_intensity = 0.61
-glow_strength = 1.21
 glow_mix = 1.0
-glow_bloom = 0.03
-glow_blend_mode = 1
-glow_hdr_threshold = 0.04
-glow_hdr_scale = 0.31
-glow_map_strength = 0.0
 fog_sky_affect = 0.0
 volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.294118, 0.27451, 0.584314, 1)
