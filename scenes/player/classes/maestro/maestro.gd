@@ -4,7 +4,7 @@ class_name FighterMaestro
 func _ready():
 	if is_multiplayer_authority():
 		special1_label.text = "Multistab"
-		special2_label.text = ""
+		special2_label.text = "Taste"
 		special3_label.text = ""
 	
 	super()

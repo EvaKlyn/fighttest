@@ -173,7 +173,7 @@ func _physics_process(delta):
 				
 		elif not hit_stunned:
 			if is_on_floor():
-				move(delta, input_axis, last_input_state.jmp, last_input_state.crc, last_input_state.spr, current_weapon.attack_move_multiplier)
+				move(delta, input_axis, last_input_state.jmp, last_input_state.crc, last_input_state.spr, current_weapon.real_attack_move_multiplier)
 			else:
 				move(delta, last_input_state.ax, last_input_state.jmp, last_input_state.crc, last_input_state.spr)
 		else:
@@ -238,9 +238,12 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 		taken_attack_ids.pop_front()
 	taken_attack_ids.append(attack_id)
 	
+	var attacker_id: int = get_tree().get_multiplayer().get_remote_sender_id()
+	var attacker_node: Player = get_node(MpGlobals.player_nodes.get(attacker_id))
+	
 	var properties: AttackProperties
 	if ser_props["dmg"] is int and ser_props["power"] is float and ser_props["stun"] is float:
-		properties = AttackProperties.new(ser_props["dmg"], ser_props["power"], ser_props["stun"], Vector2.ZERO, ser_props["shatter"])
+		properties = AttackProperties.new(ser_props["dmg"], ser_props["power"], ser_props["stun"], Vector2.ZERO, ser_props["shatter"], ser_props["heal"])
 	else:
 		properties = AttackProperties.new()
 	
@@ -260,6 +263,7 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 			reduce_health(properties.damage)
 			spawn_hurt_particles()
 			current_weapon.stop_attacks()
+			attacker_node.rpc("heal", properties.healing)
 			
 		else:
 			add_hit_stun(properties.stun_time * 0.35)
@@ -269,12 +273,19 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 		
 		return
 	
+	attacker_node.rpc("heal", properties.healing)
 	reduce_health(properties.damage)
 	current_weapon.stop_attacks()
 	add_hit_stun(properties.stun_time)
+
+@rpc("reliable", "any_peer")
+func heal(amount: int):
+	print("healies!")
+	current_hp += amount
+	if current_hp > max_hp:
+		current_hp = max_hp
 
 @rpc("unreliable", "call_local")
 func play_sound(sound: String):
 	if sound == "hurt":
 		hurt_sound.play()
-

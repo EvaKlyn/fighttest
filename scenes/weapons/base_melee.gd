@@ -23,8 +23,10 @@ var attacking: bool = false
 var current_attack_id = uuid.new().as_string()
 var current_attack_type: String = "attack"
 var attack_just_ended = false
+var real_attack_move_multiplier: float = 0.0
 
 func _ready():
+	real_attack_move_multiplier = attack_move_multiplier
 	hitbox.body_entered.connect(func(body): _on_melee_hitbox_body_entered(body))
 	hitbox.area_entered.connect(func(area): _on_melee_hitbox_area_entered(area))
 	weapon_anims.animation_finished.connect(func(animname): attack_just_ended = true)
@@ -76,6 +78,16 @@ func attack_almost_finished() -> bool:
 		return true
 	
 	return false
+
+func override_move_speed(new_speed_multi: float):
+	if not is_multiplayer_authority():
+		return
+	real_attack_move_multiplier = new_speed_multi
+
+func reset_move_speed():
+	if not is_multiplayer_authority():
+		return
+	real_attack_move_multiplier = attack_move_multiplier
 
 func activate_melee_hitbox(properties: AttackProperties):
 	if not is_multiplayer_authority():

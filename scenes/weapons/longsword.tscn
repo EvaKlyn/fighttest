@@ -66,6 +66,7 @@ stun_time = 0.3
 position_offset = Vector2(0, 0)
 knockup_amount = 1.0
 shattering = false
+healing = 0
 
 [sub_resource type="Animation" id="Animation_ua6s1"]
 resource_name = "crouch_stab"
@@ -160,6 +161,7 @@ stun_time = 0.3
 position_offset = Vector2(0, 0)
 knockup_amount = 0.0
 shattering = true
+healing = 0
 
 [sub_resource type="Animation" id="Animation_hvjom"]
 resource_name = "shield_break"
@@ -221,6 +223,7 @@ stun_time = 0.6
 position_offset = Vector2(0, 0)
 knockup_amount = 15.0
 shattering = false
+healing = 0
 
 [sub_resource type="Animation" id="Animation_73w8r"]
 resource_name = "special"
@@ -283,6 +286,7 @@ stun_time = 0.5
 position_offset = Vector2(0, 0)
 knockup_amount = 12.0
 shattering = false
+healing = 0
 
 [sub_resource type="Animation" id="Animation_xw0sq"]
 resource_name = "special_2"
@@ -377,6 +381,7 @@ stun_time = 0.3
 position_offset = Vector2(0, 0)
 knockup_amount = 4.0
 shattering = false
+healing = 0
 
 [sub_resource type="Animation" id="Animation_o7evh"]
 resource_name = "swing"
@@ -439,6 +444,7 @@ stun_time = 0.6
 position_offset = Vector2(0, 0)
 knockup_amount = 10.0
 shattering = false
+healing = 0
 
 [sub_resource type="Animation" id="Animation_4ads4"]
 resource_name = "swing2"
@@ -501,6 +507,7 @@ stun_time = 0.5
 position_offset = Vector2(0, 0)
 knockup_amount = 1.0
 shattering = false
+healing = 0
 
 [sub_resource type="Animation" id="Animation_o31xy"]
 resource_name = "swing3"

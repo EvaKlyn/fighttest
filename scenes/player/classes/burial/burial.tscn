@@ -480,6 +480,7 @@ current_animator_time = 0.0
 current_weapon = NodePath("Longsword")
 body_animations = NodePath("AnimationPlayer")
 head_mesh = NodePath("Vis/CharacterModel/Node3D")
+special_cooldown_1 = 2.0
 special_cooldown_2 = 2.7
 special_cooldown_3 = 3.2
 underwater_env = null
@@ -630,15 +631,3 @@ replication_config = SubResource("SceneReplicationConfig_0umch")
 [node name="VBoxContainer" parent="CanvasLayer/Hud" index="3"]
 offset_top = -89.0
 offset_right = 217.0
-
-[node name="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special1" index="1"]
-custom_minimum_size = Vector2(128, 0)
-size_flags_horizontal = 1
-
-[node name="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special2" index="1"]
-custom_minimum_size = Vector2(128, 0)
-size_flags_horizontal = 1
-
-[node name="ProgressBar" parent="CanvasLayer/Hud/VBoxContainer/Special3" index="1"]
-custom_minimum_size = Vector2(128, 0)
-size_flags_horizontal = 1

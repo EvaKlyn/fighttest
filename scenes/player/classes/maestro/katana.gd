@@ -31,10 +31,10 @@ func attack(attack_state) -> void:
 	
 	if attack_state == "air":
 		if not attacking:
-			weapon_anims.play("air_swing")
+			weapon_anims.play("swing")
 		if attacking and attack_almost_finished():
 			weapon_anims.clear_queue()
-			weapon_anims.play("air_swing")
+			weapon_anims.play("swing")
 			
 	super(attack_state)
 	weapon_anims.queue("idle")
@@ -47,6 +47,20 @@ func special(attack_state, index: int) -> void:
 			weapon_anims.clear_queue()
 			weapon_anims.play("special_1")
 			character.special_timer_1 = character.special_cooldown_1
+		
+		if index == 2:
+			var character: FighterMaestro = get_parent_node_3d()
+			character.head.body_lock()
+			weapon_anims.clear_queue()
+			weapon_anims.play("special_2")
+			character.special_timer_2 = character.special_cooldown_2
+		
+		if index == 3:
+			var character: FighterMaestro = get_parent_node_3d()
+			character.head.body_lock()
+			weapon_anims.clear_queue()
+			weapon_anims.play("special_3")
+			character.special_timer_3 = character.special_cooldown_3
 		
 		current_attack_type = "special"
 	

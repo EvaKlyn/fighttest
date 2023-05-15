@@ -5,6 +5,15 @@ var spawn_points: Array = []
 
 var player_nodes: Dictionary = {}
 
+func _process(delta):
+	if multiplayer.is_server():
+		if is_multiplayer_authority():
+			rpc("_sync_nodes", player_nodes)
+
+@rpc("unreliable", "call_remote")
+func _sync_nodes(nodes: Dictionary):
+	player_nodes = nodes
+
 @rpc
 func send_spawns():
 	return spawn_points
