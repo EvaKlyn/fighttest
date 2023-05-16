@@ -106,6 +106,7 @@ func deactivate_melee_hitbox():
 func stop_attacks():
 	deactivate_melee_hitbox()
 	weapon_anims.stop()
+	reset_move_speed()
 	weapon_anims.queue("idle")
 
 func clash():

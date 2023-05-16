@@ -66,11 +66,10 @@ func special(attack_state, index: int) -> void:
 		if index == 2:
 			var character: FighterBurial = get_parent_node_3d()
 			character.head.body_lock()
-			if character.is_on_floor():
-				weapon_anims.clear_queue()
-				weapon_anims.play("special_2")
-				character.rising_ability.set_active(true)
-				character.special_timer_2 = character.special_cooldown_2
+			weapon_anims.clear_queue()
+			weapon_anims.play("special_2")
+			character.rising_ability.set_active(true)
+			character.special_timer_2 = character.special_cooldown_2
 				
 		if index == 3:
 			var character: FighterBurial = get_parent_node_3d()

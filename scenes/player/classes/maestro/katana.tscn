@@ -222,17 +222,17 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.04, 0.05, 0.15, 0.24, 0.25, 0.35, 0.54, 0.55, 0.65, 0.74, 0.75, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.04, 0.15, 0.24, 0.25, 0.35, 0.54, 0.55, 0.65, 0.74, 0.75, 0.9, 0.98),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
+"args": [1.0],
+"method": &"override_move_speed"
+}, {
 "args": [],
 "method": &"play_sound"
 }, {
 "args": [SubResource("Resource_7y5aq")],
 "method": &"activate_melee_hitbox"
-}, {
-"args": [],
-"method": &"deactivate_melee_hitbox"
 }, {
 "args": [],
 "method": &"play_sound"
@@ -260,6 +260,9 @@ tracks/2/keys = {
 }, {
 "args": [],
 "method": &"deactivate_melee_hitbox"
+}, {
+"args": [],
+"method": &"reset_move_speed"
 }]
 }
 
@@ -283,14 +286,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("WeaponModel")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.0296506, 2.47368, 0.213331, 0.4, 1, -0.0296506, 2.47368, 0.213331, 0.47, 1, -0.0296506, 0.711704, -0.774622, 0.59, 1, -0.0296506, 0.711704, -0.774622, 1.14, 1, 0.129172, 1.2251, -0.162094, 1.5, 1, 1.28882, 1.2251, -0.162094)
+tracks/0/keys = PackedFloat32Array(0, 1, -0.0296506, 2.47368, 0.213331, 0.4, 1, -0.0296506, 2.47368, 0.213331, 0.47, 1, -0.0296506, 0.711704, -0.774622, 0.59, 1, -0.0296506, 0.711704, -0.774622, 1.14, 1, 0.0500704, 1.08256, -0.108161, 1.48, 1, 1.66924, 0.955677, -0.026601)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("WeaponModel")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -7.29085e-08, 0.955631, -0.294563, -4.267e-08, 0.4, 1, -7.29085e-08, 0.955631, -0.294563, -4.267e-08, 0.47, 1, -8.07899e-08, 0.861812, -0.507227, -2.46853e-08, 0.59, 1, -8.07899e-08, 0.861812, -0.507227, -2.46853e-08, 1.14, 1, -0.430785, -0.690773, 0.0959307, 0.572759, 1.5, 1, 0.438448, 0.835051, -0.0504143, -0.328499)
+tracks/1/keys = PackedFloat32Array(0, 1, -7.29085e-08, 0.955631, -0.294563, -4.267e-08, 0.4, 1, -7.29085e-08, 0.955631, -0.294563, -4.267e-08, 0.47, 1, -8.07899e-08, 0.861812, -0.507227, -2.46853e-08, 0.59, 1, -8.07899e-08, 0.861812, -0.507227, -2.46853e-08, 1.14, 1, -0.430785, -0.690773, 0.0959307, 0.572759)
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -309,6 +312,63 @@ tracks/2/keys = {
 }, {
 "args": [],
 "method": &"deactivate_melee_hitbox"
+}]
+}
+
+[sub_resource type="Resource" id="Resource_fpwfy"]
+script = ExtResource("2_n52wy")
+damage = 15
+launch_power = 8.0
+stun_time = 0.45
+position_offset = Vector2(0, 0)
+knockup_amount = 0.0
+shattering = false
+healing = 0
+
+[sub_resource type="Animation" id="Animation_issll"]
+resource_name = "special_3"
+step = 0.01
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.0296505, 1.66593, -0.519426, 0.4, 1, -0.0296503, 1.88001, -0.67947, 0.7, 1, -0.0296505, 0.0610287, -1.26178, 1, 1, -0.0296505, 0.0610287, -1.26178)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -3.27885e-08, 0.167308, 0.985904, 7.78543e-08, 0.5, 1, -3.27885e-08, 0.167308, 0.985904, 7.78543e-08, 0.7, 1, 6.63418e-08, 0.994916, 0.100703, 5.22986e-08, 1, 1, 6.63418e-08, 0.994916, 0.100703, 5.22986e-08)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.53, 0.7, 0.73, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [1.3],
+"method": &"override_move_speed"
+}, {
+"args": [],
+"method": &"play_sound"
+}, {
+"args": [SubResource("Resource_fpwfy")],
+"method": &"activate_melee_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_melee_hitbox"
+}, {
+"args": [0.25],
+"method": &"override_move_speed"
+}, {
+"args": [],
+"method": &"reset_move_speed"
 }]
 }
 
@@ -406,63 +466,6 @@ tracks/2/keys = {
 }, {
 "args": [],
 "method": &"deactivate_melee_hitbox"
-}]
-}
-
-[sub_resource type="Resource" id="Resource_fpwfy"]
-script = ExtResource("2_n52wy")
-damage = 15
-launch_power = 8.0
-stun_time = 0.45
-position_offset = Vector2(0, 0)
-knockup_amount = 0.0
-shattering = false
-healing = 0
-
-[sub_resource type="Animation" id="Animation_issll"]
-resource_name = "special_3"
-step = 0.01
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponModel")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.0296505, 1.66593, -0.519426, 0.4, 1, -0.0296503, 1.88001, -0.67947, 0.7, 1, -0.0296505, 0.0610287, -1.26178, 1, 1, -0.0296505, 0.0610287, -1.26178)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponModel")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -3.27885e-08, 0.167308, 0.985904, 7.78543e-08, 0.5, 1, -3.27885e-08, 0.167308, 0.985904, 7.78543e-08, 0.7, 1, 6.63418e-08, 0.994916, 0.100703, 5.22986e-08, 1, 1, 6.63418e-08, 0.994916, 0.100703, 5.22986e-08)
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.53, 0.7, 0.73, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"values": [{
-"args": [1.3],
-"method": &"override_move_speed"
-}, {
-"args": [],
-"method": &"play_sound"
-}, {
-"args": [SubResource("Resource_fpwfy")],
-"method": &"activate_melee_hitbox"
-}, {
-"args": [],
-"method": &"deactivate_melee_hitbox"
-}, {
-"args": [0.25],
-"method": &"override_move_speed"
-}, {
-"args": [],
-"method": &"reset_move_speed"
 }]
 }
 

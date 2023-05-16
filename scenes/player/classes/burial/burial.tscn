@@ -480,7 +480,6 @@ current_animator_time = 0.0
 current_weapon = NodePath("Longsword")
 body_animations = NodePath("AnimationPlayer")
 head_mesh = NodePath("Vis/CharacterModel/Node3D")
-special_cooldown_1 = 2.0
 special_cooldown_2 = 2.7
 special_cooldown_3 = 3.2
 underwater_env = null

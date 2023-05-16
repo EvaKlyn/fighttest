@@ -2,6 +2,8 @@ shader_type spatial;
 
 const float SMOOTHSTEP_AA = 0.01;
 uniform sampler2D surface_texture: source_color, filter_linear_mipmap;
+uniform sampler2D surface_normal_map: source_color, filter_linear_mipmap;
+uniform float normal_map_depth = 1.0;
 uniform sampler2D caustic_texture: source_color, filter_linear_mipmap;
 uniform float scale = 60.0;
 uniform vec2 scroll = vec2(0.25, 0.25);
@@ -31,7 +33,7 @@ varying vec2 noiseUV;
 varying vec2 distortUV;
 varying vec3 viewNormal;
 
-uniform float distortionVertex : hint_range(0.0, 1.0, 0.005) = 0.03;
+uniform float distortionVertex : hint_range(0.0, 5.0, 0.005) = 0.03;
 uniform float speedVertex : hint_range(0.0, 1.0, 0.005) = 0.1;
 uniform sampler2D noiseVertex;
 
@@ -95,7 +97,16 @@ void fragment(){
 	vec4 color = alphaBlend(surfaceNoiseColor, waterColor);
 	vec3 texture_rgb = (texture(surface_texture, UV * scale - scroll2 * TIME).rgb * COLOR.rgb);
 	vec3 caustic_rgb = texture(caustic_texture, UV * scale - scroll * TIME).rgb;
+	
 	vec3 temp_rgb = texture_rgb.rgb * color.rgb;
+	
+	vec3 normal_xyz = texture(surface_normal_map, UV * scale - scroll2 * TIME).xyz;
+	
+	NORMAL_MAP = normal_xyz * vec3(2.0,2.0,1.0) - vec3(1.0,1.0,0.0);
+	SPECULAR = 1.0;
+	ROUGHNESS = 0.0;
+	
+	NORMAL_MAP_DEPTH = normal_map_depth;
     ALBEDO = mix(temp_rgb, caustic_rgb, 0.3);
 	ALPHA = color.a;
 }
