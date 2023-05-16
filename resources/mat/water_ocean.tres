@@ -1,0 +1,60 @@
+[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://bt4edld8nyi62"]
+
+[ext_resource type="Shader" path="res://resources/mat/water.gdshader" id="1_eumro"]
+[ext_resource type="Texture2D" uid="uid://byd0y3yna70wm" path="res://textures/upgrade/water_caustics.png" id="2_4bygw"]
+[ext_resource type="Texture2D" uid="uid://crjoa586ilc4f" path="res://textures/water_foamy_01.jpg" id="3_84fyf"]
+[ext_resource type="Texture2D" uid="uid://rud4703ebhhi" path="res://textures/upgrade/water_normal.png" id="4_gn1s4"]
+[ext_resource type="Texture2D" uid="uid://c1f38fqsd7qos" path="res://textures/upgrade/water.png" id="5_pmd7y"]
+
+[sub_resource type="Gradient" id="Gradient_0isxa"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vqft3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hlq3v"]
+color_ramp = SubResource("Gradient_0isxa")
+noise = SubResource("FastNoiseLite_vqft3")
+
+[sub_resource type="Gradient" id="Gradient_4x0ne"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iepvw"]
+seed = 1
+frequency = 0.017
+fractal_type = 2
+fractal_octaves = 7
+fractal_lacunarity = 1.662
+fractal_gain = 0.624
+fractal_weighted_strength = 1.0
+domain_warp_amplitude = 5.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ab8ph"]
+color_ramp = SubResource("Gradient_4x0ne")
+noise = SubResource("FastNoiseLite_iepvw")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_eumro")
+shader_parameter/normal_map_depth = 0.0
+shader_parameter/scale = 95.413
+shader_parameter/scroll = Vector2(0.188, 0.037)
+shader_parameter/scroll2 = Vector2(-0.172, -0.116)
+shader_parameter/beer_factor = 0.467
+shader_parameter/foam_distance = 0.01
+shader_parameter/foam_max_distance = 1.176
+shader_parameter/foam_min_distance = 0.04
+shader_parameter/foam_color = Color(0.988235, 0.709804, 0.721569, 1)
+shader_parameter/surface_noise_tiling = Vector2(4, 4)
+shader_parameter/surface_noise_scroll = Vector3(0.014, 0.007, 1)
+shader_parameter/surface_noise_cutoff = 1.0
+shader_parameter/surface_distortion_amount = 0.27
+shader_parameter/_DepthGradientShallow = Color(0.988235, 0.709804, 0.721569, 1)
+shader_parameter/_DepthGradientDeep = Color(0.960784, 0.65098, 0.654902, 1)
+shader_parameter/_DepthMaxDistance = 1.0
+shader_parameter/_DepthFactor = 1.0
+shader_parameter/distortionVertex = 5.0
+shader_parameter/speedVertex = 0.015
+shader_parameter/surface_texture = ExtResource("5_pmd7y")
+shader_parameter/surface_normal_map = ExtResource("4_gn1s4")
+shader_parameter/caustic_texture = ExtResource("2_4bygw")
+shader_parameter/surfaceNoise = ExtResource("3_84fyf")
+shader_parameter/distortNoise = SubResource("NoiseTexture2D_hlq3v")
+shader_parameter/noiseVertex = SubResource("NoiseTexture2D_ab8ph")

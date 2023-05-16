@@ -1,16 +1,27 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://b5hiab75n3r81"]
+[gd_resource type="Environment" load_steps=6 format=3 uid="uid://b5hiab75n3r81"]
 
 [ext_resource type="Texture2D" uid="uid://be8sef30cy1dx" path="res://assets/img/sky.png" id="1_wj53u"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_lp2fw"]
-rayleigh_coefficient = 5.74
-rayleigh_color = Color(0.305882, 0.65098, 0.745098, 1)
-mie_coefficient = 0.024
-mie_eccentricity = 0.85
-night_sky = ExtResource("1_wj53u")
+[sub_resource type="Gradient" id="Gradient_018ak"]
+colors = PackedColorArray(0, 0.380392, 0.380392, 1, 1, 0.4, 0.48, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n0r8x"]
+gradient = SubResource("Gradient_018ak")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3y6d"]
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+sky_horizon_color = Color(0.819608, 0.352941, 0.407843, 1)
+sky_curve = 0.212132
+sky_cover = ExtResource("1_wj53u")
+sky_cover_modulate = Color(0.819608, 0.352941, 0.407843, 1)
+ground_bottom_color = Color(0.619608, 0.4, 0.415686, 1)
+ground_horizon_color = Color(0.819608, 0.352941, 0.407843, 1)
+ground_curve = 1.42025
+sun_angle_max = 9.67
+sun_curve = 1e+06
 
 [sub_resource type="Sky" id="Sky_jjvr8"]
-sky_material = SubResource("PhysicalSkyMaterial_lp2fw")
+sky_material = SubResource("ProceduralSkyMaterial_m3y6d")
 process_mode = 3
 
 [resource]
@@ -31,9 +42,18 @@ ssao_intensity = 3.02
 ssao_power = 1.13679
 sdfgi_bounce_feedback = 1.05
 glow_enabled = true
+glow_levels/2 = 0.85
 glow_levels/3 = 0.41
-glow_levels/5 = 0.31
+glow_levels/5 = 0.43
+glow_levels/6 = 0.12
+glow_levels/7 = 0.12
+glow_strength = 1.35
 glow_mix = 1.0
+glow_blend_mode = 1
+glow_hdr_threshold = 0.93
+glow_hdr_scale = 0.17
+glow_map_strength = 1.0
+glow_map = SubResource("GradientTexture1D_n0r8x")
 fog_enabled = true
 fog_light_color = Color(0.839216, 0.505882, 0.517647, 1)
 fog_light_energy = 0.42

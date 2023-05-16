@@ -182,6 +182,13 @@ func _physics_process(delta):
 		$Vis/HealthLabel.text =  str(int((float(current_hp) / float(max_hp)) * 100)) + "%"
 		body_animations.seek(current_animation_time)
 		head_mesh.rotation = head_rotation
+		
+		if hit_stunned:
+			$Vis.position.y = 0 + randf_range(-0.1, 0.1)
+			$Vis.position.x = 0 + randf_range(-0.1, 0.1)
+			$Vis.position.z = 0 + randf_range(-0.1, 0.1)
+		else:
+			$Vis.position = Vector3.ZERO
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
@@ -280,7 +287,6 @@ func take_damage(attack_id: String, ser_props: Dictionary, knockback_angle: floa
 
 @rpc("reliable", "any_peer")
 func heal(amount: int):
-	print("healies!")
 	current_hp += amount
 	if current_hp > max_hp:
 		current_hp = max_hp
